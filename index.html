@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta-Physicalization</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f7f4f0;color:#1a1816;min-height:100vh}
+#app{max-width:760px;margin:0 auto;padding:0 0 3rem}
+
+/* Header */
+.header{padding:1.75rem 1.25rem 0}
+.header h1{font-size:22px;font-weight:600;margin-bottom:3px}
+.header p{font-size:13px;color:#6b6460;margin-bottom:1.25rem}
+
+/* Tabs */
+.tabs{display:flex;border-bottom:1px solid #e0d8ce;overflow-x:auto}
+.tab{padding:10px 18px;font-size:13px;font-family:inherit;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;color:#8a8078;transition:all .15s;white-space:nowrap}
+.tab.on{border-bottom:2px solid #1a1816;color:#1a1816;font-weight:500}
+.itab{padding:7px 12px;font-size:12px;font-family:inherit;border:none;background:none;cursor:pointer;border-bottom:1.5px solid transparent;color:#8a8078;transition:all .15s;white-space:nowrap}
+.itab.on{border-bottom:1.5px solid #1a1816;color:#1a1816;font-weight:500}
+
+/* Panels */
+.panel{display:none;padding:1.25rem 1.25rem 0}.panel.on{display:block}
+
+/* Cards & surfaces */
+.card{background:#fff;border:0.5px solid #e0d8ce;border-radius:8px;padding:12px 14px}
+.surface{background:#f0ebe4;border-radius:8px;padding:10px 14px}
+.empty{text-align:center;padding:2.5rem 1rem;color:#8a8078;font-size:13px;border:1px dashed #d5cec5;border-radius:8px;line-height:1.7}
+
+/* Section label */
+.sl{font-size:11px;color:#8a8078;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+
+/* Buttons */
+.bsm{padding:6px 12px;font-size:12px;border:0.5px solid #d5cec5;border-radius:6px;background:#fff;cursor:pointer;color:#6b6460;font-family:inherit;transition:all .15s}
+.bsm:hover{background:#f0ebe4}
+.bsm:disabled{opacity:.5;cursor:not-allowed}
+.tbtn{padding:8px 12px;font-size:12px;border:0.5px solid #e0d8ce;border-radius:7px;cursor:pointer;background:#fff;color:#6b6460;font-family:inherit;transition:all .15s}
+.tbtn.on{border-color:#6b6460;background:#f0ebe4;color:#1a1816;font-weight:500}
+.sub-btn{width:100%;padding:11px;font-size:14px;font-weight:500;border:0.5px solid #d5cec5;border-radius:8px;cursor:pointer;background:#fff;color:#1a1816;font-family:inherit;transition:all .15s}
+.sub-btn:disabled{opacity:.35;cursor:not-allowed}
+.sub-btn:not(:disabled):hover{background:#f0ebe4}
+
+/* Form inputs */
+.inp{width:100%;padding:8px 10px;font-size:13px;border:0.5px solid #d5cec5;border-radius:6px;background:#fff;color:#1a1816;font-family:inherit;outline:none}
+.inp:focus{border-color:#8a8078}
+.inp-pw{font-family:monospace;letter-spacing:.05em}
+
+/* Bars */
+.bg-bar{height:4px;border-radius:2px;background:#e8e0d8;margin-top:3px}
+
+/* Insight box */
+.ibox{border:0.5px solid #e0d8ce;border-radius:10px;padding:1rem;margin-top:1rem}
+
+/* Metrics grid */
+.mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.mg3.mg2{grid-template-columns:repeat(2,1fr)}
+
+/* Metric card */
+.mc{background:#f0ebe4;border-radius:8px;padding:12px 14px}
+.mc .lbl{font-size:11px;color:#8a8078}
+.mc .val{font-size:20px;font-weight:500;color:#1a1816;margin-top:4px}
+
+/* Emotion button */
+.emo-btn{flex:1;padding:12px 6px;text-align:center;border:0.5px solid #d5cec5;border-radius:10px;cursor:pointer;background:#fff;font-size:13px;font-family:inherit;transition:all .15s}
+
+/* Depth button */
+.dep-btn{padding:10px 14px;border:0.5px solid #e0d8ce;border-radius:8px;cursor:pointer;background:#fff;font-size:13px;font-family:inherit;text-align:left;display:flex;align-items:center;gap:12px;color:#1a1816;transition:all .15s;width:100%}
+.dep-btn.on{border-color:#6b6460;background:#f0ebe4;font-weight:500}
+
+/* Success */
+.success-ico{width:46px;height:46px;border-radius:50%;background:#d4edda;color:#2a7a4a;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:20px}
+
+/* Table */
+.data-table{width:100%;border-collapse:collapse;font-size:12px}
+.data-table th{padding:8px 10px;font-size:11px;font-weight:600;color:#6b6460;text-align:left;background:#f0ebe4;border-bottom:0.5px solid #e0d8ce}
+.data-table td{padding:8px 10px;border-bottom:0.5px solid #e8e0d8;color:#3d3835}
+
+/* Info banner */
+.info-banner{background:#f0ebe4;border-left:3px solid #8a8078;border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px;color:#6b6460;margin-bottom:1.25rem;line-height:1.6}
+
+/* Showcase active badge */
+.sc-badge{background:#f0ebe4;border-radius:8px;padding:9px 14px;margin-bottom:1.25rem;font-size:13px;color:#8a8078}
+.sc-badge strong{color:#1a1816}
+
+/* API key section */
+.key-wrap{background:#fff8f0;border:0.5px solid #f0c070;border-radius:8px;padding:12px 14px;margin-bottom:1rem}
+.key-wrap .kl{font-size:12px;color:#a07030;font-weight:500;margin-bottom:6px}
+
+/* Save message */
+#smsg{font-size:12px;color:#2a7a4a;text-align:center;margin-top:8px;display:none}
+
+/* Responsive */
+@media(max-width:540px){
+  .mg3{grid-template-columns:repeat(2,1fr)}
+  .tab{padding:9px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <h1 id="course-h">Meta-Physicalization</h1>
+    <p>Audience engagement instrument</p>
+    <div class="tabs">
+      <button class="tab on" onclick="goTab('audience',this)">Audience</button>
+      <button class="tab" onclick="goTab('student',this)">Student</button>
+      <button class="tab" onclick="goTab('educator',this)">Educator</button>
+      <button class="tab" onclick="goTab('setup',this)">⚙ Setup</button>
+    </div>
+  </div>
+
+  <div id="p-audience" class="panel on"></div>
+  <div id="p-student" class="panel"></div>
+  <div id="p-educator" class="panel"></div>
+  <div id="p-setup" class="panel"></div>
+</div>
+
+<script>
+// ─── Constants ────────────────────────────────────────────────────────────────
+const EMOS = [
+  {id:"pink",  l:"Positive", c:"#E8748A"},
+  {id:"yellow",l:"Neutral",  c:"#E8B84B"},
+  {id:"purple",l:"Critical", c:"#8B6BB1"}
+];
+
+const DEFAULT_CFG = {
+  courseName:  "Data Physicalization Studio",
+  teams:       ["Team 1","Team 2","Team 3","Team 4","Team 5"],
+  showcases:   ["Showcase 1"],
+  active:      0,
+  depthQ:      "How deeply did this artifact impact your thinking?",
+  dLabels:     ["No Impact","Slight","Moderate","Strong","Transformative"],
+  dDescs:      ["Did not change my thinking","Barely reflected","Made me pause and think","Shifted how I see it","Fundamentally changed my view"],
+  apiKey:      ""
+};
+
+// ─── State ────────────────────────────────────────────────────────────────────
+let cfg  = JSON.parse(JSON.stringify(DEFAULT_CFG));
+let resp = [];
+let aSel = 0, aEmo = null, aDep = null;
+let sSI  = 0, sTI  = 0;
+let eSI  = 0;
+
+// ─── Storage (localStorage) ───────────────────────────────────────────────────
+function loadData() {
+  try { const c = localStorage.getItem("mph_cfg");  if (c) cfg  = JSON.parse(c); } catch(e) {}
+  try { const r = localStorage.getItem("mph_resp"); if (r) resp = JSON.parse(r); } catch(e) {}
+}
+function saveCfg()  { try { localStorage.setItem("mph_cfg",  JSON.stringify(cfg));  } catch(e) {} }
+function saveResp() { try { localStorage.setItem("mph_resp", JSON.stringify(resp)); } catch(e) {} }
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+loadData();
+sSI = Math.min(cfg.active, cfg.showcases.length - 1);
+eSI = Math.min(cfg.active, cfg.showcases.length - 1);
+document.getElementById('course-h').textContent = cfg.courseName;
+rAud();
+
+// ─── Tab navigation ───────────────────────────────────────────────────────────
+function goTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('button.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('p-' + id).classList.add('on');
+  btn.classList.add('on');
+  if      (id === 'audience') rAud();
+  else if (id === 'student')  rStu();
+  else if (id === 'educator') rEdu();
+  else if (id === 'setup')    rSetup();
+}
+
+// ─── Aggregation ──────────────────────────────────────────────────────────────
+function agg(si, ti) {
+  const r = (ti != null)
+    ? resp.filter(x => x.si === si && x.ti === ti)
+    : resp.filter(x => x.si === si);
+  const e = {pink:0, yellow:0, purple:0};
+  const d = {1:0, 2:0, 3:0, 4:0, 5:0};
+  r.forEach(x => { e[x.e]++; d[x.d]++; });
+  const n  = r.length;
+  const sc = Object.entries(d).reduce((s,[l,c]) => s + parseInt(l)*c, 0);
+  const st = (d[4]||0) + (d[5]||0);
+  return { e, d, n, sc, mean: n>0 ? sc/n : 0, pSt: n>0 ? st/n*100 : 0 };
+}
+
+// ─── Radial wheel (SVG) ───────────────────────────────────────────────────────
+function wheel(svgEl, a, sz) {
+  svgEl.innerHTML = '';
+  const cx = sz/2, cy = sz/2;
+  const iR = sz*.085, oR = sz*.42, rw = (oR - iR) / 5;
+  const R  = deg => deg * Math.PI / 180;
+  const ns = "http://www.w3.org/2000/svg";
+
+  function arc(ir, or, s, e) {
+    const x1=cx+or*Math.cos(R(s)), y1=cy+or*Math.sin(R(s));
+    const x2=cx+or*Math.cos(R(e)), y2=cy+or*Math.sin(R(e));
+    const x3=cx+ir*Math.cos(R(e)), y3=cy+ir*Math.sin(R(e));
+    const x4=cx+ir*Math.cos(R(s)), y4=cy+ir*Math.sin(R(s));
+    return `M${x1} ${y1}A${or} ${or} 0 0 1 ${x2} ${y2}L${x3} ${y3}A${ir} ${ir} 0 0 0 ${x4} ${y4}Z`;
+  }
+  function mk(tag, attrs) {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k, v));
+    return el;
+  }
+
+  // Rings
+  for (let l = 1; l <= 5; l++) {
+    svgEl.appendChild(mk("circle", {cx, cy, r: iR + l*rw, fill:"none", stroke:"#9a9088", "stroke-width":"0.4", opacity:"0.2"}));
+  }
+
+  // Arc segments
+  const scts = [
+    {id:"pink",   s:-90, e:30,  c:"#E8748A", la:-30,  sym:"+"},
+    {id:"yellow", s:30,  e:150, c:"#E8B84B", la:90,   sym:"○"},
+    {id:"purple", s:150, e:270, c:"#8B6BB1", la:210,  sym:"—"}
+  ];
+  const tE = Object.values(a.e).reduce((x,y) => x+y, 0);
+  const tD = Object.values(a.d).reduce((x,y) => x+y, 0);
+
+  scts.forEach(({id, s, e, c}) => {
+    for (let lv = 1; lv <= 5; lv++) {
+      const eS = tE > 0 ? (a.e[id]||0)/tE : 0;
+      const dS = tD > 0 ? (a.d[lv]||0)/tD : 0;
+      const op = a.n === 0 ? 0.04 : Math.max(0.04, Math.min(0.88, eS * dS * 12));
+      svgEl.appendChild(mk("path", {
+        d: arc(iR + (lv-1)*rw, iR + lv*rw, s+1, e-1),
+        fill: c, opacity: op
+      }));
+    }
+  });
+
+  // Dividers
+  [-90, 30, 150].forEach(ang => {
+    svgEl.appendChild(mk("line", {
+      x1: cx+iR*Math.cos(R(ang)), y1: cy+iR*Math.sin(R(ang)),
+      x2: cx+oR*Math.cos(R(ang)), y2: cy+oR*Math.sin(R(ang)),
+      stroke:"#9a9088", "stroke-width":"0.5", opacity:"0.25"
+    }));
+  });
+
+  // Center circle
+  svgEl.appendChild(mk("circle", {cx, cy, r: iR-1, fill:"#f0ebe4", stroke:"#9a9088", "stroke-width":"0.4", opacity:"0.5"}));
+
+  // Emotion labels
+  const fs = Math.max(7, Math.round(sz * .052)), lR = oR + sz * .075;
+  scts.forEach(({la, sym, c}) => {
+    const t = mk("text", {
+      x: cx + lR*Math.cos(R(la)), y: cy + lR*Math.sin(R(la)),
+      "text-anchor":"middle", "dominant-baseline":"central",
+      "font-size": fs+2, "font-weight":"600", fill: c
+    });
+    t.textContent = sym;
+    svgEl.appendChild(t);
+  });
+}
+
+// ─── AUDIENCE ─────────────────────────────────────────────────────────────────
+function rAud() {
+  const el = document.getElementById('p-audience');
+  if (!cfg.teams.length) {
+    el.innerHTML = `<div class="empty">Configure your course in ⚙ Setup first.<br>Add teams, set up a showcase, then come back here.</div>`;
+    return;
+  }
+  const sc = cfg.showcases[cfg.active] || "Showcase";
+  el.innerHTML = `
+    <div id="af">
+      <div class="sc-badge">Active showcase: <strong>${sc}</strong></div>
+
+      <p class="sl">Select the artifact you are responding to</p>
+      <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.25rem" id="a-teams">
+        ${cfg.teams.map((t,i) => `<button class="tbtn${i===aSel?' on':''}" onclick="aSelT(${i},this)">${t}</button>`).join('')}
+      </div>
+
+      <p class="sl">How did this artifact make you feel?</p>
+      <div style="display:flex;gap:8px;margin-bottom:1.25rem">
+        ${EMOS.map(e => `
+          <button id="ae-${e.id}" onclick="aSelE('${e.id}','${e.c}',this)" class="emo-btn">
+            <div id="ad-${e.id}" style="width:13px;height:13px;border-radius:50%;background:${e.c};margin:0 auto 5px;opacity:.35"></div>
+            ${e.l}
+          </button>`).join('')}
+      </div>
+
+      <p class="sl" style="margin-bottom:4px">${cfg.depthQ}</p>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem">
+        ${cfg.dLabels.map((lb,i) => `
+          <button id="adp-${i+1}" onclick="aSelD(${i+1},this)" class="dep-btn">
+            <span style="font-size:11px;color:#aaa;min-width:16px">${i+1}</span>
+            <span>${lb}</span>
+            <span style="font-size:12px;color:#8a8078;margin-left:auto">${cfg.dDescs[i]||''}</span>
+          </button>`).join('')}
+      </div>
+
+      <button id="asub" onclick="aSub()" disabled class="sub-btn">Submit response</button>
+    </div>
+
+    <div id="aok" style="display:none;text-align:center;padding:2.5rem 1rem">
+      <div class="success-ico">✓</div>
+      <p style="font-size:15px;font-weight:500;margin-bottom:4px">Response recorded</p>
+      <p style="font-size:13px;color:#8a8078">Thank you for your reflection</p>
+    </div>`;
+
+  aEmo = null; aDep = null; chkSub();
+}
+
+function aSelT(i, b) {
+  aSel = i;
+  document.querySelectorAll('#a-teams .tbtn').forEach((x,j) => x.classList.toggle('on', j===i));
+}
+function aSelE(id, c, b) {
+  aEmo = id;
+  EMOS.forEach(e => {
+    const bt = document.getElementById('ae-'+e.id);
+    if (bt) { bt.style.borderColor='#d5cec5'; bt.style.background='#fff'; bt.style.color=''; }
+    const dot = document.getElementById('ad-'+e.id);
+    if (dot) dot.style.opacity = '.35';
+  });
+  b.style.borderColor = c; b.style.background = c+'22'; b.style.color = c;
+  document.getElementById('ad-'+id).style.opacity = '1';
+  chkSub();
+}
+function aSelD(d, b) {
+  aDep = d;
+  for (let i=1; i<=5; i++) {
+    const bt = document.getElementById('adp-'+i);
+    if (bt) { bt.classList.remove('on'); }
+  }
+  b.classList.add('on');
+  chkSub();
+}
+function chkSub() {
+  const b = document.getElementById('asub');
+  if (!b) return;
+  const ok = !!(aEmo && aDep);
+  b.disabled = !ok;
+}
+function aSub() {
+  if (!aEmo || !aDep) return;
+  resp.push({ si: cfg.active, ti: aSel, e: aEmo, d: aDep, ts: Date.now() });
+  saveResp();
+  document.getElementById('af').style.display  = 'none';
+  document.getElementById('aok').style.display = 'block';
+  setTimeout(() => { aEmo = null; aDep = null; rAud(); }, 2000);
+}
+
+// ─── STUDENT ──────────────────────────────────────────────────────────────────
+function rStu() {
+  const el = document.getElementById('p-student');
+  if (!cfg.teams.length) {
+    el.innerHTML = `<div class="empty">Configure your course in ⚙ Setup first.</div>`;
+    return;
+  }
+  const a    = agg(sSI, sTI);
+  const hasD = a.n > 0;
+  const maxD = Math.max(...Object.values(a.d), 1);
+
+  const scTabs = cfg.showcases.map((s,i) =>
+    `<button class="itab${sSI===i?' on':''}" onclick="sSelSC(${i},this)">${s}</button>`).join('');
+
+  const tBtns = cfg.teams.map((t,i) =>
+    `<button class="tbtn${sTI===i?' on':''}" onclick="sSelT(${i},this)">${t}</button>`).join('');
+
+  const depBars = cfg.dLabels.map((lb,i) => {
+    const cnt = a.d[i+1]||0;
+    const pct = a.n>0 ? ((cnt/a.n)*100).toFixed(1) : 0;
+    return `<div style="margin-bottom:7px">
+      <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px">
+        <span style="color:#8a8078">${lb}</span>
+        <span style="color:#1a1816;font-weight:500">${cnt} (${pct}%)</span>
+      </div>
+      <div class="bg-bar"><div style="height:100%;border-radius:2px;background:#4A90A4;width:${cnt/maxD*100}%;transition:width .4s"></div></div>
+    </div>`;
+  }).join('');
+
+  const eGrid = EMOS.map(e => {
+    const cnt = a.e[e.id]||0;
+    const pct = a.n>0 ? ((cnt/a.n)*100).toFixed(1) : "0.0";
+    return `<div style="flex:1;border-radius:8px;padding:10px 12px;text-align:center;border:0.5px solid ${e.c}55;background:${e.c}14">
+      <div style="width:12px;height:12px;border-radius:50%;background:${e.c};margin:0 auto 5px"></div>
+      <div style="font-size:11px;color:#8a8078;margin-bottom:2px">${e.l}</div>
+      <div style="font-size:17px;font-weight:500">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="display:flex;border-bottom:0.5px solid #e0d8ce;margin-bottom:1rem;overflow-x:auto">${scTabs}</div>
+    <p class="sl">Select your team</p>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.25rem">${tBtns}</div>
+
+    ${!hasD
+      ? `<div class="empty">No responses yet for <strong>${cfg.teams[sTI]}</strong> in <strong>${cfg.showcases[sSI]}</strong>.<br><br>Once audience members submit responses, your data will appear here.</div>`
+      : `<div class="mg3">
+          <div class="mc"><div class="lbl">Responses</div><div class="val">${a.n}</div></div>
+          <div class="mc"><div class="lbl">Impact score</div><div class="val">${a.sc}</div></div>
+          <div class="mc"><div class="lbl">Strong+</div><div class="val">${a.pSt.toFixed(1)}%</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-bottom:1.25rem">
+          <svg id="sw" width="180" height="180" viewBox="0 0 180 180"></svg>
+          <div><p class="sl">${cfg.depthQ}</p>${depBars}</div>
+        </div>
+        <p class="sl">Emotional response</p>
+        <div style="display:flex;gap:8px;margin-bottom:1rem">${eGrid}</div>
+        <div class="ibox">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <span style="font-size:13px;font-weight:500">AI reflection insights</span>
+            <button class="bsm" onclick="genAI('student')" id="gs">Generate ↗</button>
+          </div>
+          <div id="is" style="font-size:13px;color:#8a8078;line-height:1.7">
+            Click Generate to get AI-powered insights about how your team's artifact impacted the audience.<br>
+            <em style="font-size:12px">(Requires an Anthropic API key — set it in ⚙ Setup)</em>
+          </div>
+        </div>`
+    }`;
+
+  if (hasD) { const sw = document.getElementById('sw'); if (sw) wheel(sw, a, 180); }
+}
+function sSelSC(i, b) { sSI = i; document.querySelectorAll('#p-student .itab').forEach((x,j) => x.classList.toggle('on', j===i)); rStu(); }
+function sSelT(i, b)  { sTI = i; rStu(); }
+
+// ─── EDUCATOR ─────────────────────────────────────────────────────────────────
+function rEdu() {
+  const el = document.getElementById('p-educator');
+  if (!cfg.teams.length) {
+    el.innerHTML = `<div class="empty">Configure your course in ⚙ Setup first.</div>`;
+    return;
+  }
+
+  const scTabs = cfg.showcases.map((s,i) =>
+    `<button class="itab${eSI===i?' on':''}" onclick="eSelSC(${i},this)">${s}</button>`).join('');
+
+  const rows = cfg.teams.map((t,i) => {
+    const a = agg(eSI, i);
+    const bars = EMOS.map(e =>
+      `<span style="display:inline-block;height:7px;width:${a.n>0?Math.round((a.e[e.id]||0)/a.n*60):0}px;background:${e.c};border-radius:1px;margin-right:2px"></span>`
+    ).join('');
+    return `<tr>
+      <td>${t}</td>
+      <td>${a.n}</td>
+      <td>${a.sc}</td>
+      <td>${a.pSt.toFixed(1)}%</td>
+      <td>${bars}</td>
+    </tr>`;
+  }).join('');
+
+  const prog = cfg.showcases.length > 1
+    ? `<div style="margin-bottom:1.25rem">
+        <p class="sl">Cross-showcase progression</p>
+        <div style="display:grid;grid-template-columns:repeat(${Math.min(cfg.showcases.length,4)},1fr);gap:10px">
+          ${cfg.showcases.map((s,i) => {
+            const a = agg(i, null);
+            return `<div class="mc" style="border-top:3px solid #4A90A4">
+              <div class="lbl">${s}</div>
+              <div class="val">${a.sc}</div>
+              <div style="font-size:11px;color:#8a8078">N=${a.n} · ${a.pSt.toFixed(1)}% strong+</div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>` : '';
+
+  const wCols   = Math.min(cfg.teams.length, 4);
+  const wheelsH = `<div style="display:grid;grid-template-columns:repeat(${wCols},1fr);gap:8px;margin-bottom:1.25rem">
+    ${cfg.teams.map((t,i) => `
+      <div style="background:#f0ebe4;border-radius:8px;padding:10px;text-align:center">
+        <p style="font-size:10px;font-weight:600;color:#6b6460;margin-bottom:4px">${t}</p>
+        <svg id="ew${i}" width="110" height="110" viewBox="0 0 110 110"></svg>
+        <p style="font-size:10px;color:#8a8078;margin-top:3px">N=${agg(eSI,i).n}</p>
+      </div>`).join('')}
+  </div>`;
+
+  el.innerHTML = `
+    <div style="display:flex;border-bottom:0.5px solid #e0d8ce;margin-bottom:1.25rem;overflow-x:auto">${scTabs}</div>
+    ${prog}
+    <p class="sl">Team overview — ${cfg.showcases[eSI]||''}</p>
+    <div style="border:0.5px solid #e0d8ce;border-radius:8px;overflow:auto;margin-bottom:1.25rem">
+      <table class="data-table">
+        <thead><tr>
+          <th>Team</th><th>N</th><th>Score</th><th>Strong+</th><th>Emotions</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p class="sl">Response wheels — ${cfg.showcases[eSI]||''}</p>
+    ${wheelsH}
+    <div class="ibox">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span style="font-size:13px;font-weight:500">Pedagogical analysis</span>
+        <button class="bsm" onclick="genAI('educator')" id="ge">Analyze ↗</button>
+      </div>
+      <div id="ie" style="font-size:13px;color:#8a8078;line-height:1.7">
+        Click Analyze for an AI-powered analysis of engagement patterns across all teams.<br>
+        <em style="font-size:12px">(Requires an Anthropic API key — set it in ⚙ Setup)</em>
+      </div>
+    </div>`;
+
+  cfg.teams.forEach((_,i) => {
+    const e = document.getElementById('ew'+i);
+    if (e) wheel(e, agg(eSI,i), 110);
+  });
+}
+function eSelSC(i, b) { eSI = i; document.querySelectorAll('#p-educator .itab').forEach((x,j) => x.classList.toggle('on', j===i)); rEdu(); }
+
+// ─── SETUP ────────────────────────────────────────────────────────────────────
+function rSetup() {
+  const el = document.getElementById('p-setup');
+
+  const tInputs = cfg.teams.map((t,i) => `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <span style="font-size:12px;color:#aaa;min-width:22px">${i+1}.</span>
+      <input class="inp" id="tn${i}" value="${t}" placeholder="Team ${i+1}" style="flex:1">
+      <button class="bsm" onclick="rmTeam(${i})" style="padding:5px 10px;color:#c55">×</button>
+    </div>`).join('');
+
+  const scItems = cfg.showcases.map((s,i) => `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <input class="inp" id="sn${i}" value="${s}" style="flex:1">
+      <button class="bsm" onclick="setActive(${i})" style="${cfg.active===i?'border-color:#4A90A4;color:#4A90A4;font-weight:500':''}">
+        ${cfg.active===i?'✓ Active':'Set active'}</button>
+      ${cfg.showcases.length>1 ? `<button class="bsm" onclick="rmShowcase(${i})" style="padding:5px 10px;color:#c55">×</button>` : ''}
+    </div>`).join('');
+
+  const dRows = cfg.dLabels.map((lb,i) => `
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;margin-bottom:6px;align-items:center">
+      <span style="font-size:12px;color:#aaa;min-width:18px">${i+1}</span>
+      <input class="inp" id="dl${i}" value="${lb}" placeholder="Label">
+      <input class="inp" id="dd${i}" value="${cfg.dDescs[i]||''}" placeholder="Short description">
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="info-banner">
+      This tab is for educators to configure the instrument before each showcase.
+      Settings are saved locally in this browser.
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <p class="sl">Course name</p>
+      <input class="inp" id="cn" value="${cfg.courseName}">
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <p class="sl" style="margin:0">Teams (${cfg.teams.length})</p>
+        <button class="bsm" onclick="addTeam()">+ Add team</button>
+      </div>
+      <div id="tinputs">${tInputs}</div>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <p class="sl" style="margin:0">Showcases / rounds</p>
+        <button class="bsm" onclick="addShowcase()">+ Add showcase</button>
+      </div>
+      <div id="sinputs">${scItems}</div>
+      <p style="font-size:11px;color:#8a8078;margin-top:4px">The active showcase is what the Audience form records responses to.</p>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <p class="sl">Depth question</p>
+      <input class="inp" id="dq" value="${cfg.depthQ}">
+      <p style="font-size:11px;color:#8a8078;margin-top:4px">
+        Customize the question to suit your context — e.g. "How relevant was this to your experience?"
+        The 3 affective states and 5-level scale remain fixed to keep data comparable across courses.
+      </p>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <p class="sl">Depth level labels <span style="text-transform:none;font-weight:400;letter-spacing:0">— level · label · description</span></p>
+      <div>${dRows}</div>
+    </div>
+
+    <div class="key-wrap" style="margin-bottom:1.5rem">
+      <p class="kl">Anthropic API key (for AI insights)</p>
+      <input class="inp inp-pw" id="akey" type="password" value="${cfg.apiKey||''}" placeholder="sk-ant-...">
+      <p style="font-size:11px;color:#a07030;margin-top:6px;line-height:1.6">
+        Required only for the AI insight features in the Student and Educator tabs.
+        Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:#a07030">console.anthropic.com</a>.
+        Your key is stored only in this browser and never sent anywhere except directly to Anthropic.
+      </p>
+    </div>
+
+    <button onclick="saveSetup()" class="sub-btn">Save settings</button>
+    <p id="smsg">Settings saved ✓</p>
+
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:0.5px solid #e0d8ce">
+      <p class="sl">Data management</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="bsm" onclick="exportData()">Export responses (JSON)</button>
+        <button class="bsm" onclick="clearData()" style="color:#c55">Clear all responses</button>
+      </div>
+      <p style="font-size:11px;color:#8a8078;margin-top:8px">Export saves all collected responses as a JSON file for analysis or backup.</p>
+    </div>`;
+}
+
+function addTeam()    { cfg.teams.push("Team " + (cfg.teams.length+1)); rSetup(); }
+function rmTeam(i)    { cfg.teams.splice(i,1); rSetup(); }
+function addShowcase(){ cfg.showcases.push("Showcase " + (cfg.showcases.length+1)); rSetup(); }
+function rmShowcase(i){ if(cfg.showcases.length<=1)return; cfg.showcases.splice(i,1); if(cfg.active>=cfg.showcases.length)cfg.active=cfg.showcases.length-1; rSetup(); }
+function setActive(i) { cfg.active=i; rSetup(); }
+
+function saveSetup() {
+  const g = id => document.getElementById(id);
+  cfg.courseName = g('cn')?.value.trim() || cfg.courseName;
+  cfg.teams      = cfg.teams.map((_,i) => g('tn'+i)?.value.trim() || `Team ${i+1}`);
+  cfg.showcases  = cfg.showcases.map((_,i) => g('sn'+i)?.value.trim() || `Showcase ${i+1}`);
+  cfg.depthQ     = g('dq')?.value.trim() || cfg.depthQ;
+  cfg.dLabels    = cfg.dLabels.map((_,i) => g('dl'+i)?.value.trim() || cfg.dLabels[i]);
+  cfg.dDescs     = cfg.dDescs.map((_,i)  => g('dd'+i)?.value.trim() || '');
+  cfg.apiKey     = g('akey')?.value.trim() || '';
+  saveCfg();
+  document.getElementById('course-h').textContent = cfg.courseName;
+  sSI = Math.min(sSI, cfg.showcases.length-1);
+  eSI = Math.min(eSI, cfg.showcases.length-1);
+  const m = g('smsg'); if(m){ m.style.display='block'; setTimeout(()=>m.style.display='none', 2000); }
+}
+
+function exportData() {
+  const data = { config: cfg, responses: resp, exported: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `meta-physicalization-${cfg.courseName.replace(/\s+/g,'-')}-${Date.now()}.json`;
+  a.click();
+}
+
+function clearData() {
+  if (!confirm("Clear all collected responses? This cannot be undone.")) return;
+  resp = [];
+  saveResp();
+  alert("All responses cleared.");
+}
+
+// ─── AI INSIGHTS ──────────────────────────────────────────────────────────────
+async function genAI(role) {
+  if (!cfg.apiKey) {
+    alert("Please add your Anthropic API key in ⚙ Setup to use AI insights.");
+    return;
+  }
+  const isStu = role === 'student';
+  const btn   = document.getElementById(isStu ? 'gs' : 'ge');
+  const box   = document.getElementById(isStu ? 'is' : 'ie');
+  if (!btn || !box) return;
+
+  btn.disabled = true; btn.textContent = "Generating…";
+  box.style.color = '#8a8078'; box.textContent = "Generating insights…";
+
+  const sys = isStu
+    ? "You are a supportive design coach. Given audience response data for one team's data physicalization artifact, give 3 concise actionable insights to help the student understand their audience impact. Focus on emotion distribution, reflection depth, and design implications. Use bullet points (•). Under 180 words."
+    : "You are a design education researcher. Analyze cross-team audience response data from a data physicalization studio showcase. Identify 4 key insights about engagement patterns, affect profiles, and pedagogical implications. Use bullet points (•). Under 230 words.";
+
+  let content = '';
+  if (isStu) {
+    const a = agg(sSI, sTI); const n = a.n;
+    content = `Team: ${cfg.teams[sTI]}, Showcase: ${cfg.showcases[sSI]}\n`
+      + `N=${n}, Score=${a.sc}, Mean=${a.mean.toFixed(2)}, Strong+=${a.pSt.toFixed(1)}%\n`
+      + `Positive=${a.e.pink}(${n>0?((a.e.pink/n*100).toFixed(1)):0}%), Neutral=${a.e.yellow}(${n>0?((a.e.yellow/n*100).toFixed(1)):0}%), Critical=${a.e.purple}(${n>0?((a.e.purple/n*100).toFixed(1)):0}%)\n`
+      + `Depths:[${[1,2,3,4,5].map(l=>a.d[l]||0).join(",")}]\n`
+      + `Depth labels: ${cfg.dLabels.join(", ")}`;
+  } else {
+    const lines = cfg.teams.map((t,i) => {
+      const a = agg(eSI,i); const n = a.n;
+      return `${t}: N=${n}, Score=${a.sc}, Strong+=${a.pSt.toFixed(1)}%, `
+        + `Pos=${n>0?Math.round(a.e.pink/n*100):0}%, Neu=${n>0?Math.round(a.e.yellow/n*100):0}%, Crit=${n>0?Math.round(a.e.purple/n*100):0}%`;
+    });
+    content = `Course: ${cfg.courseName}, Showcase: ${cfg.showcases[eSI]}\n${lines.join("\n")}\n\nKey pedagogical insights?`;
+  }
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-api-key": cfg.apiKey, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 900, system: sys, messages: [{ role:"user", content }] })
+    });
+    const data = await res.json();
+    const txt  = data.content?.filter(c=>c.type==="text").map(c=>c.text).join("") || "No insights returned.";
+    box.style.color = '#1a1816'; box.style.whiteSpace = 'pre-wrap'; box.textContent = txt;
+  } catch(e) {
+    box.textContent = "Unable to generate insights. Check your API key in ⚙ Setup and try again.";
+  }
+  btn.disabled = false;
+  btn.textContent = isStu ? "Generate ↗" : "Analyze ↗";
+}
+</script>
+</body>
+</html>
