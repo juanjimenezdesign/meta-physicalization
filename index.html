@@ -92,6 +92,2990 @@
 
     .nav-tab {
       flex: 1;
+      min-width: 100px;
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .nav-tab:hover {
+      background: var(--bg-secondary);
+      color: var(--text);
+    }
+
+    .nav-tab.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-tab .icon {
+      font-size: 1.1rem;
+    }
+
+    /* ==================== CARDS ==================== */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ==================== FORMS ==================== */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      background: var(--bg-card);
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(46, 90, 135, 0.1);
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    /* ==================== BUTTONS ==================== */
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .btn-success {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #168a63;
+    }
+
+    .btn-danger {
+      background: #EF4444;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #DC2626;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-accent:hover {
+      background: #c04d28;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.85rem;
+    }
+
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ==================== TAB PANELS ==================== */
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* ==================== GRID LAYOUTS ==================== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .nav-tab { min-width: 80px; font-size: 0.8rem; padding: 10px 12px; }
+    }
+
+    /* ==================== PROJECT CARDS ==================== */
+    .project-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 16px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .project-card.selected {
+      border-color: var(--primary);
+      background: rgba(46, 90, 135, 0.05);
+    }
+
+    .project-card-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .project-card-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ==================== TEAM GRID ==================== */
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      transition: var(--transition);
+    }
+
+    .team-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .team-card.selected {
+      border-color: var(--primary);
+      background: rgba(46, 90, 135, 0.03);
+    }
+
+    .team-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .team-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .team-members {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .status-badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .status-pending { background: #FEF3C7; color: #92400E; }
+    .status-ai-ready { background: #DBEAFE; color: #1E40AF; }
+    .status-curated { background: #D1FAE5; color: #065F46; }
+    .status-released { background: #E0E7FF; color: #3730A3; }
+
+    /* ==================== METRICS ==================== */
+    .metrics-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .metric-card {
+      flex: 1;
+      min-width: 120px;
+      background: var(--bg-secondary);
+      padding: 16px;
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ==================== VISUALIZATION CONTAINER ==================== */
+    .viz-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 450px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .radial-wheel {
+      max-width: 500px;
+      width: 100%;
+    }
+
+    /* ==================== FEEDBACK INPUT ==================== */
+    .feedback-section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .depth-scale {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .depth-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .depth-btn:hover {
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .depth-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .depth-btn .depth-num {
+      font-size: 1.3rem;
+    }
+
+    .depth-btn .depth-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .emotion-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .emotion-btn {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .emotion-btn.positive { background: var(--positive); }
+    .emotion-btn.neutral { background: var(--neutral); color: var(--text); }
+    .emotion-btn.negative { background: var(--negative); }
+
+    .emotion-btn:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .emotion-btn.selected {
+      border-color: var(--text);
+      transform: scale(1.15);
+    }
+
+    /* ==================== AI ASSESSMENT ==================== */
+    .assessment-panel {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .assessment-section {
+      margin-bottom: 20px;
+    }
+
+    .assessment-section-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .assessment-content {
+      background: var(--bg-card);
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .assessment-content[contenteditable="true"] {
+      min-height: 80px;
+    }
+
+    .assessment-content[contenteditable="true"]:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* ==================== RUBRIC TABLE ==================== */
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    .rubric-table th, .rubric-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rubric-table th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .rubric-table tr:hover {
+      background: var(--bg-secondary);
+    }
+
+    .rubric-score-input {
+      width: 70px;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .rubric-score-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .rubric-total {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    /* ==================== FILE UPLOAD ==================== */
+    .file-upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .file-upload-zone:hover {
+      border-color: var(--primary);
+      background: rgba(46, 90, 135, 0.02);
+    }
+
+    .file-upload-zone.dragover {
+      border-color: var(--primary);
+      background: rgba(46, 90, 135, 0.05);
+    }
+
+    .uploaded-files {
+      margin-top: 16px;
+    }
+
+    .uploaded-file {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+    }
+
+    .uploaded-file-name {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ==================== STUDENT VIEW ==================== */
+    .feedback-package {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .feedback-section-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .feedback-section-card.feed-up { border-left-color: var(--secondary); }
+    .feedback-section-card.feed-back { border-left-color: var(--primary); }
+    .feedback-section-card.feed-forward { border-left-color: var(--accent); }
+
+    .feedback-section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feedback-section-question {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .strength-item, .growth-item {
+      padding: 12px;
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+    }
+
+    .strength-item {
+      background: #D1FAE5;
+      border-left: 3px solid var(--secondary);
+    }
+
+    .growth-item {
+      background: #FEF3C7;
+      border-left: 3px solid #F59E0B;
+    }
+
+    .reflection-prompt {
+      background: var(--bg-secondary);
+      padding: 16px;
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .self-assessment-input {
+      width: 100%;
+      min-height: 120px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      resize: vertical;
+    }
+
+    /* ==================== PROGRESS TIMELINE ==================== */
+    .timeline-container {
+      padding: 20px 0;
+    }
+
+    .timeline-chart {
+      width: 100%;
+      height: 300px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-container {
+      margin-bottom: 16px;
+    }
+
+    .progress-bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+    }
+
+    .progress-bar {
+      height: 24px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: var(--radius);
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ==================== QR CODE ==================== */
+    .qr-container {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+
+    .qr-code-display {
+      display: inline-block;
+      padding: 20px;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+    }
+
+    .qr-url {
+      margin-top: 16px;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+    }
+
+    /* ==================== INSTRUCTOR NOTES ==================== */
+    .instructor-notes {
+      background: #FEF9C3;
+      border: 1px solid #FDE047;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .instructor-notes-label {
+      font-weight: 600;
+      color: #854D0E;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .instructor-notes textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      border: 1px solid #FDE047;
+      border-radius: var(--radius);
+      background: white;
+      font-family: inherit;
+      resize: vertical;
+    }
+
+    /* ==================== EMPTY STATES ==================== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+    }
+
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .empty-state-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* ==================== LOADING ==================== */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ==================== MODAL ==================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.95);
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    /* ==================== TOAST NOTIFICATIONS ==================== */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1001;
+    }
+
+    .toast {
+      background: var(--text);
+      color: white;
+      padding: 16px 24px;
+      border-radius: var(--radius);
+      margin-top: 10px;
+      box-shadow: var(--shadow-lg);
+      animation: slideIn 0.3s ease;
+    }
+
+    .toast.success { background: var(--secondary); }
+    .toast.error { background: #EF4444; }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* ==================== API KEY INPUT ==================== */
+    .api-key-section {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .api-key-section .form-input {
+      font-family: monospace;
+    }
+
+    /* ==================== EXPORT SECTION ==================== */
+    .export-section {
+      background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    /* ==================== UTILITIES ==================== */
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .mt-2 { margin-top: 8px; }
+    .mt-4 { margin-top: 16px; }
+    .mb-2 { margin-bottom: 8px; }
+    .mb-4 { margin-bottom: 16px; }
+    .flex { display: flex; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    .gap-2 { gap: 8px; }
+    .gap-4 { gap: 16px; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <h1>🎯 Meta-Physicalization</h1>
+      <p>AI-Enhanced Pedagogical Assessment Tool for Design Education</p>
+      <span class="course-badge" id="courseBadge">No course configured</span>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="setup">
+        <span class="icon">⚙️</span> Setup
+      </button>
+      <button class="nav-tab" data-tab="audience">
+        <span class="icon">👥</span> Audience
+      </button>
+      <button class="nav-tab" data-tab="visualization">
+        <span class="icon">📊</span> Live View
+      </button>
+      <button class="nav-tab" data-tab="instructor">
+        <span class="icon">👩‍🏫</span> Instructor
+      </button>
+      <button class="nav-tab" data-tab="progress">
+        <span class="icon">📈</span> Progress
+      </button>
+      <button class="nav-tab" data-tab="student">
+        <span class="icon">🎓</span> Student
+      </button>
+    </nav>
+
+    <!-- ==================== SETUP TAB ==================== -->
+    <div class="tab-panel active" id="panel-setup">
+      
+      <!-- API Key Configuration -->
+      <div class="card api-key-section">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">🔑 AI Configuration</h3>
+            <p class="card-subtitle">Enter your Anthropic API key to enable AI-powered assessments</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Anthropic API Key</label>
+          <input type="password" class="form-input" id="apiKey" placeholder="sk-ant-api03-...">
+          <p class="mt-2" style="font-size: 0.85rem; color: var(--text-secondary);">
+            Your API key is stored locally and never sent to any server except Anthropic's API.
+          </p>
+        </div>
+      </div>
+
+      <!-- Course Configuration -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📚 Course Configuration</h3>
+            <p class="card-subtitle">Set up your course details and learning objectives</p>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Course Code</label>
+            <input type="text" class="form-input" id="courseCode" placeholder="e.g., IDES 3305B">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Course Title</label>
+            <input type="text" class="form-input" id="courseTitle" placeholder="e.g., Data Physicalization">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Term</label>
+            <select class="form-select" id="courseTerm">
+              <option value="Fall">Fall</option>
+              <option value="Winter">Winter</option>
+              <option value="Summer">Summer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Year</label>
+            <input type="number" class="form-input" id="courseYear" value="2026">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Learning Objectives</label>
+          <textarea class="form-textarea" id="courseLearningObjectives" placeholder="Enter course learning objectives, one per line..."></textarea>
+        </div>
+
+        <button class="btn btn-primary" onclick="saveCourseConfig()">💾 Save Course Configuration</button>
+      </div>
+
+      <!-- QR Code Generation -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📱 Audience Access QR Code</h3>
+            <p class="card-subtitle">Display this QR code at your showcase for easy audience participation</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="generateQRCode()">🔄 Generate QR Code</button>
+        </div>
+        
+        <div class="qr-container" id="qrContainer">
+          <div class="qr-code-display" id="qrCodeDisplay">
+            <p style="color: var(--text-secondary);">Click "Generate QR Code" to create</p>
+          </div>
+          <div class="qr-url" id="qrUrl"></div>
+          <button class="btn btn-secondary mt-4" onclick="copyQRUrl()">📋 Copy URL</button>
+        </div>
+      </div>
+
+      <!-- Projects Configuration -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📁 Projects</h3>
+            <p class="card-subtitle">Configure individual projects within this course</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="openProjectModal()">+ Add Project</button>
+        </div>
+        
+        <div id="projectsList" class="grid-3">
+          <!-- Projects will be rendered here -->
+        </div>
+        <div id="projectsEmpty" class="empty-state">
+          <div class="empty-state-icon">📁</div>
+          <div class="empty-state-title">No Projects Yet</div>
+          <p>Add your first project to get started</p>
+        </div>
+      </div>
+
+      <!-- Teams Configuration -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">👥 Teams</h3>
+            <p class="card-subtitle">Define student teams for this course</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="openTeamModal()">+ Add Team</button>
+        </div>
+        
+        <div id="teamsList" class="grid-4">
+          <!-- Teams will be rendered here -->
+        </div>
+        <div id="teamsEmpty" class="empty-state">
+          <div class="empty-state-icon">👥</div>
+          <div class="empty-state-title">No Teams Yet</div>
+          <p>Add teams to enable feedback collection</p>
+        </div>
+      </div>
+
+      <!-- Knowledge Base Upload -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📄 Knowledge Base</h3>
+            <p class="card-subtitle">Upload course documents to ground AI assessments (syllabus, rubrics, briefs)</p>
+          </div>
+        </div>
+        
+        <div class="file-upload-zone" id="fileUploadZone" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" multiple accept=".txt,.md,.pdf,.docx" style="display:none" onchange="handleFileUpload(event)">
+          <div style="font-size: 2rem; margin-bottom: 8px;">📤</div>
+          <div style="font-weight: 500;">Drop files here or click to upload</div>
+          <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+            Supports: .txt, .md (PDF/DOCX will be read as text if possible)
+          </div>
+        </div>
+
+        <div id="uploadedFilesList" class="uploaded-files"></div>
+      </div>
+
+      <!-- Data Export -->
+      <div class="card export-section">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📤 Data Export</h3>
+            <p class="card-subtitle">Export your data for analysis or backup</p>
+          </div>
+        </div>
+        
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="exportResponsesCSV()">
+            📊 Export Responses (CSV)
+          </button>
+          <button class="btn btn-primary" onclick="exportAssessmentsCSV()">
+            📝 Export Assessments (CSV)
+          </button>
+          <button class="btn btn-secondary" onclick="exportAllData()">
+            💾 Backup All Data (JSON)
+          </button>
+          <button class="btn btn-secondary" onclick="document.getElementById('importInput').click()">
+            📥 Import Backup
+          </button>
+          <input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== AUDIENCE TAB ==================== -->
+    <div class="tab-panel" id="panel-audience">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">🎯 Provide Feedback</h3>
+            <p class="card-subtitle">Share your response to the project you just experienced</p>
+          </div>
+        </div>
+
+        <!-- Project Selection -->
+        <div class="form-group">
+          <label class="form-label">Select Project</label>
+          <select class="form-select" id="audienceProjectSelect" onchange="loadTeamsForProject()">
+            <option value="">-- Select a project --</option>
+          </select>
+        </div>
+
+        <!-- Team Selection -->
+        <div class="form-group">
+          <label class="form-label">Select Team</label>
+          <select class="form-select" id="audienceTeamSelect">
+            <option value="">-- Select a team --</option>
+          </select>
+        </div>
+
+        <div class="feedback-section">
+          <h4 style="margin-bottom: 8px;">How deeply did this project impact you?</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 20px;">Select the level that best describes your experience</p>
+          
+          <div class="depth-scale">
+            <button class="depth-btn" data-depth="1" onclick="selectDepth(1)">
+              <span class="depth-num">1</span>
+              <span class="depth-label">None</span>
+            </button>
+            <button class="depth-btn" data-depth="2" onclick="selectDepth(2)">
+              <span class="depth-num">2</span>
+              <span class="depth-label">Slight</span>
+            </button>
+            <button class="depth-btn" data-depth="3" onclick="selectDepth(3)">
+              <span class="depth-num">3</span>
+              <span class="depth-label">Moderate</span>
+            </button>
+            <button class="depth-btn" data-depth="4" onclick="selectDepth(4)">
+              <span class="depth-num">4</span>
+              <span class="depth-label">Strong</span>
+            </button>
+            <button class="depth-btn" data-depth="5" onclick="selectDepth(5)">
+              <span class="depth-num">5</span>
+              <span class="depth-label">Transform</span>
+            </button>
+          </div>
+
+          <h4 style="margin: 30px 0 8px;">What was the emotional character of your response?</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 20px;">Select the emotion that best matches how you felt</p>
+          
+          <div class="emotion-btns">
+            <button class="emotion-btn positive" onclick="selectEmotion('positive')">
+              <span style="font-size: 1.8rem;">😊</span>
+              Positive
+            </button>
+            <button class="emotion-btn neutral" onclick="selectEmotion('neutral')">
+              <span style="font-size: 1.8rem;">🤔</span>
+              Neutral
+            </button>
+            <button class="emotion-btn negative" onclick="selectEmotion('negative')">
+              <span style="font-size: 1.8rem;">😟</span>
+              Challenging
+            </button>
+          </div>
+
+          <button class="btn btn-success btn-lg mt-4" onclick="submitFeedback()" id="submitFeedbackBtn" disabled>
+            ✓ Submit Feedback
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VISUALIZATION TAB ==================== -->
+    <div class="tab-panel" id="panel-visualization">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📊 Real-Time Feedback Visualization</h3>
+            <p class="card-subtitle">Aggregate audience responses displayed as a radial wheel</p>
+          </div>
+          <div>
+            <select class="form-select" id="vizProjectSelect" onchange="updateVisualization()" style="width: auto;">
+              <option value="">All Projects</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="metrics-row" id="vizMetrics">
+          <div class="metric-card">
+            <div class="metric-value" id="metricTotalResponses">0</div>
+            <div class="metric-label">Total Responses</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricAvgDepth">0.0</div>
+            <div class="metric-label">Avg. Depth</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricImpactScore">0</div>
+            <div class="metric-label">Impact Score</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricDominantEmotion">-</div>
+            <div class="metric-label">Dominant Emotion</div>
+          </div>
+        </div>
+
+        <!-- Radial Visualization -->
+        <div class="viz-container">
+          <svg id="radialWheel" class="radial-wheel" viewBox="0 0 500 500"></svg>
+        </div>
+
+        <!-- Legend -->
+        <div class="flex-between mt-4" style="flex-wrap: wrap; gap: 16px;">
+          <div class="flex gap-4" style="flex-wrap: wrap;">
+            <div class="flex gap-2" style="align-items: center;">
+              <div style="width: 20px; height: 20px; background: var(--positive); border-radius: 50%;"></div>
+              <span style="font-size: 0.85rem;">Positive</span>
+            </div>
+            <div class="flex gap-2" style="align-items: center;">
+              <div style="width: 20px; height: 20px; background: var(--neutral); border-radius: 50%;"></div>
+              <span style="font-size: 0.85rem;">Neutral</span>
+            </div>
+            <div class="flex gap-2" style="align-items: center;">
+              <div style="width: 20px; height: 20px; background: var(--negative); border-radius: 50%;"></div>
+              <span style="font-size: 0.85rem;">Challenging</span>
+            </div>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-secondary);">
+            Ring saturation = response density • Outer rings = higher impact
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== INSTRUCTOR TAB ==================== -->
+    <div class="tab-panel" id="panel-instructor">
+      <div class="grid-2" style="grid-template-columns: 300px 1fr;">
+        
+        <!-- Left: Team Grid -->
+        <div class="card" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+          <div class="card-header" style="flex-direction: column; align-items: stretch;">
+            <h3 class="card-title">Teams</h3>
+            <select class="form-select mt-2" id="instructorProjectSelect" onchange="loadInstructorTeams()" style="font-size: 0.85rem;">
+              <option value="">-- Select Project --</option>
+            </select>
+          </div>
+          <div id="instructorTeamGrid">
+            <!-- Team cards will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Right: Team Detail & Assessment -->
+        <div>
+          <div class="card" id="teamDetailCard" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+            <div id="teamDetailContent">
+              <div class="empty-state">
+                <div class="empty-state-icon">👈</div>
+                <div class="empty-state-title">Select a Team</div>
+                <p>Choose a team from the list to view their feedback and generate assessment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PROGRESS TAB (NEW) ==================== -->
+    <div class="tab-panel" id="panel-progress">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">📈 Longitudinal Progress</h3>
+            <p class="card-subtitle">Track team improvement across projects throughout the term</p>
+          </div>
+          <select class="form-select" id="progressTeamSelect" onchange="renderProgressView()" style="width: auto;">
+            <option value="">-- Select Team --</option>
+          </select>
+        </div>
+
+        <div id="progressContent">
+          <div class="empty-state">
+            <div class="empty-state-icon">📈</div>
+            <div class="empty-state-title">Select a Team</div>
+            <p>Choose a team to view their progress across all projects</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== STUDENT TAB ==================== -->
+    <div class="tab-panel" id="panel-student">
+      <div class="feedback-package">
+        
+        <!-- Student Selector -->
+        <div class="card">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Select Your Team</label>
+              <select class="form-select" id="studentTeamSelect" onchange="loadStudentFeedback()">
+                <option value="">-- Select your team --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Select Project</label>
+              <select class="form-select" id="studentProjectSelect" onchange="loadStudentFeedback()">
+                <option value="">-- Select project --</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Content -->
+        <div id="studentFeedbackContent">
+          <div class="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <div class="empty-state-title">No Feedback Available</div>
+            <p>Select your team and project to view your feedback</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+  
+  <!-- Project Modal -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="projectModalTitle">Add Project</h3>
+        <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+      </div>
+      <form id="projectForm" onsubmit="saveProject(event)">
+        <input type="hidden" id="projectId">
+        <div class="form-group">
+          <label class="form-label">Project Title</label>
+          <input type="text" class="form-input" id="projectTitle" required placeholder="e.g., Personal Data Portrait">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Theme</label>
+          <input type="text" class="form-input" id="projectTheme" placeholder="e.g., Self-reflection through data">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Project Objectives</label>
+          <textarea class="form-textarea" id="projectObjectives" placeholder="Enter project-specific objectives..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Rubric Criteria (one per line, format: Criterion Name | Weight)</label>
+          <textarea class="form-textarea" id="projectRubric" placeholder="e.g., Concept Development | 25&#10;Craft & Execution | 25&#10;User Impact | 30&#10;Presentation | 20"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Showcase Date</label>
+            <input type="date" class="form-input" id="projectShowcaseDate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Weight (%)</label>
+            <input type="number" class="form-input" id="projectWeight" value="33" min="0" max="100">
+          </div>
+        </div>
+        <div class="flex gap-2" style="justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" onclick="closeProjectModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Team Modal -->
+  <div class="modal-overlay" id="teamModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="teamModalTitle">Add Team</h3>
+        <button class="modal-close" onclick="closeTeamModal()">&times;</button>
+      </div>
+      <form id="teamForm" onsubmit="saveTeam(event)">
+        <input type="hidden" id="teamId">
+        <div class="form-group">
+          <label class="form-label">Team Name</label>
+          <input type="text" class="form-input" id="teamName" required placeholder="e.g., Team Alpha">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Members (one per line)</label>
+          <textarea class="form-textarea" id="teamMembers" placeholder="e.g., Alice Johnson&#10;Bob Smith&#10;Carol Williams"></textarea>
+        </div>
+        <div class="flex gap-2" style="justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" onclick="closeTeamModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Team</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ==================== STATE MANAGEMENT ====================
+    const APP_STATE = {
+      course: null,
+      projects: [],
+      teams: [],
+      responses: [],
+      assessments: [],
+      knowledgeBase: [],
+      instructorNotes: {}, // NEW: { "teamId_projectId": "notes text" }
+      apiKey: '',
+      selectedDepth: null,
+      selectedEmotion: null,
+      selectedTeamForAssessment: null
+    };
+
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadStateFromStorage();
+      initTabs();
+      initDragAndDrop();
+      renderAll();
+    });
+
+    function loadStateFromStorage() {
+      const saved = localStorage.getItem('metaPhysicalizationState');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        Object.assign(APP_STATE, parsed);
+        // Ensure instructorNotes exists for backward compatibility
+        if (!APP_STATE.instructorNotes) APP_STATE.instructorNotes = {};
+      }
+    }
+
+    function saveStateToStorage() {
+      localStorage.setItem('metaPhysicalizationState', JSON.stringify(APP_STATE));
+    }
+
+    // ==================== TAB NAVIGATION ====================
+    function initTabs() {
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.dataset.tab;
+          
+          document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          document.getElementById(`panel-${tabId}`).classList.add('active');
+
+          if (tabId === 'visualization') updateVisualization();
+          if (tabId === 'audience') populateAudienceSelects();
+          if (tabId === 'instructor') populateInstructorSelects();
+          if (tabId === 'student') populateStudentSelects();
+          if (tabId === 'progress') populateProgressSelects();
+        });
+      });
+    }
+
+    // ==================== RENDERING ====================
+    function renderAll() {
+      renderCourseConfig();
+      renderProjects();
+      renderTeams();
+      renderUploadedFiles();
+      updateCourseBadge();
+      populateAllSelects();
+    }
+
+    function renderCourseConfig() {
+      if (APP_STATE.course) {
+        document.getElementById('courseCode').value = APP_STATE.course.code || '';
+        document.getElementById('courseTitle').value = APP_STATE.course.title || '';
+        document.getElementById('courseTerm').value = APP_STATE.course.term || 'Fall';
+        document.getElementById('courseYear').value = APP_STATE.course.year || 2026;
+        document.getElementById('courseLearningObjectives').value = APP_STATE.course.learningObjectives || '';
+      }
+      if (APP_STATE.apiKey) {
+        document.getElementById('apiKey').value = APP_STATE.apiKey;
+      }
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('projectsList');
+      const emptyState = document.getElementById('projectsEmpty');
+      
+      if (APP_STATE.projects.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      
+      emptyState.classList.add('hidden');
+      container.innerHTML = APP_STATE.projects.map((p, i) => `
+        <div class="project-card" onclick="editProject('${p.id}')">
+          <div class="project-card-title">${p.title}</div>
+          <div class="project-card-meta">${p.theme || 'No theme'}</div>
+          <div class="project-card-meta">Weight: ${p.weight}%</div>
+          <div class="flex gap-2 mt-2">
+            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); editProject('${p.id}')">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); deleteProject('${p.id}')">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderTeams() {
+      const container = document.getElementById('teamsList');
+      const emptyState = document.getElementById('teamsEmpty');
+      
+      if (APP_STATE.teams.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      
+      emptyState.classList.add('hidden');
+      container.innerHTML = APP_STATE.teams.map(t => `
+        <div class="team-card">
+          <div class="team-name">${t.name}</div>
+          <div class="team-members">${t.members?.length || 0} members</div>
+          <div class="flex gap-2 mt-2">
+            <button class="btn btn-secondary btn-sm" onclick="editTeam('${t.id}')">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteTeam('${t.id}')">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderUploadedFiles() {
+      const container = document.getElementById('uploadedFilesList');
+      if (APP_STATE.knowledgeBase.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+      
+      container.innerHTML = APP_STATE.knowledgeBase.map((f, i) => `
+        <div class="uploaded-file">
+          <span class="uploaded-file-name">📄 ${f.name}</span>
+          <button class="btn btn-danger btn-sm" onclick="removeFile(${i})">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function updateCourseBadge() {
+      const badge = document.getElementById('courseBadge');
+      if (APP_STATE.course && APP_STATE.course.code) {
+        badge.textContent = `${APP_STATE.course.code} • ${APP_STATE.course.term} ${APP_STATE.course.year}`;
+      } else {
+        badge.textContent = 'No course configured';
+      }
+    }
+
+    // ==================== COURSE CONFIGURATION ====================
+    function saveCourseConfig() {
+      APP_STATE.apiKey = document.getElementById('apiKey').value.trim();
+      APP_STATE.course = {
+        code: document.getElementById('courseCode').value.trim(),
+        title: document.getElementById('courseTitle').value.trim(),
+        term: document.getElementById('courseTerm').value,
+        year: parseInt(document.getElementById('courseYear').value),
+        learningObjectives: document.getElementById('courseLearningObjectives').value.trim()
+      };
+      saveStateToStorage();
+      updateCourseBadge();
+      showToast('Course configuration saved!', 'success');
+    }
+
+    // ==================== QR CODE GENERATION (FEATURE 8) ====================
+    function generateQRCode() {
+      const url = window.location.href.split('?')[0] + '?tab=audience';
+      const qrSize = 200;
+      
+      // Generate QR code using a simple SVG-based approach
+      // Using the QR Code API service for simplicity
+      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${qrSize}x${qrSize}&data=${encodeURIComponent(url)}`;
+      
+      document.getElementById('qrCodeDisplay').innerHTML = `
+        <img src="${qrImageUrl}" alt="QR Code" width="${qrSize}" height="${qrSize}" style="display: block;">
+      `;
+      
+      document.getElementById('qrUrl').innerHTML = `
+        <strong>URL:</strong> ${url}
+      `;
+      
+      showToast('QR Code generated!', 'success');
+    }
+
+    function copyQRUrl() {
+      const url = window.location.href.split('?')[0] + '?tab=audience';
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('URL copied to clipboard!', 'success');
+      }).catch(() => {
+        showToast('Could not copy URL', 'error');
+      });
+    }
+
+    // ==================== PROJECTS ====================
+    function openProjectModal(projectId = null) {
+      const modal = document.getElementById('projectModal');
+      const title = document.getElementById('projectModalTitle');
+      const form = document.getElementById('projectForm');
+      
+      form.reset();
+      document.getElementById('projectId').value = '';
+      
+      if (projectId) {
+        const project = APP_STATE.projects.find(p => p.id === projectId);
+        if (project) {
+          title.textContent = 'Edit Project';
+          document.getElementById('projectId').value = project.id;
+          document.getElementById('projectTitle').value = project.title;
+          document.getElementById('projectTheme').value = project.theme || '';
+          document.getElementById('projectObjectives').value = project.objectives || '';
+          document.getElementById('projectRubric').value = project.rubricText || '';
+          document.getElementById('projectShowcaseDate').value = project.showcaseDate || '';
+          document.getElementById('projectWeight').value = project.weight || 33;
+        }
+      } else {
+        title.textContent = 'Add Project';
+      }
+      
+      modal.classList.add('active');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.remove('active');
+    }
+
+    function saveProject(event) {
+      event.preventDefault();
+      
+      const id = document.getElementById('projectId').value || generateId();
+      const rubricText = document.getElementById('projectRubric').value;
+      const rubric = parseRubric(rubricText);
+      
+      const project = {
+        id,
+        title: document.getElementById('projectTitle').value.trim(),
+        theme: document.getElementById('projectTheme').value.trim(),
+        objectives: document.getElementById('projectObjectives').value.trim(),
+        rubricText,
+        rubric,
+        showcaseDate: document.getElementById('projectShowcaseDate').value,
+        weight: parseInt(document.getElementById('projectWeight').value) || 33
+      };
+      
+      const existingIndex = APP_STATE.projects.findIndex(p => p.id === id);
+      if (existingIndex >= 0) {
+        APP_STATE.projects[existingIndex] = project;
+      } else {
+        APP_STATE.projects.push(project);
+      }
+      
+      saveStateToStorage();
+      renderProjects();
+      populateAllSelects();
+      closeProjectModal();
+      showToast('Project saved!', 'success');
+    }
+
+    function editProject(id) {
+      openProjectModal(id);
+    }
+
+    function deleteProject(id) {
+      if (confirm('Are you sure you want to delete this project?')) {
+        APP_STATE.projects = APP_STATE.projects.filter(p => p.id !== id);
+        APP_STATE.responses = APP_STATE.responses.filter(r => r.projectId !== id);
+        APP_STATE.assessments = APP_STATE.assessments.filter(a => a.projectId !== id);
+        saveStateToStorage();
+        renderProjects();
+        populateAllSelects();
+        showToast('Project deleted', 'success');
+      }
+    }
+
+    function parseRubric(text) {
+      if (!text) return [];
+      return text.split('\n').filter(line => line.trim()).map(line => {
+        const parts = line.split('|').map(p => p.trim());
+        return {
+          criterion: parts[0] || '',
+          weight: parseInt(parts[1]) || 0
+        };
+      });
+    }
+
+    // ==================== TEAMS ====================
+    function openTeamModal(teamId = null) {
+      const modal = document.getElementById('teamModal');
+      const title = document.getElementById('teamModalTitle');
+      const form = document.getElementById('teamForm');
+      
+      form.reset();
+      document.getElementById('teamId').value = '';
+      
+      if (teamId) {
+        const team = APP_STATE.teams.find(t => t.id === teamId);
+        if (team) {
+          title.textContent = 'Edit Team';
+          document.getElementById('teamId').value = team.id;
+          document.getElementById('teamName').value = team.name;
+          document.getElementById('teamMembers').value = (team.members || []).join('\n');
+        }
+      } else {
+        title.textContent = 'Add Team';
+      }
+      
+      modal.classList.add('active');
+    }
+
+    function closeTeamModal() {
+      document.getElementById('teamModal').classList.remove('active');
+    }
+
+    function saveTeam(event) {
+      event.preventDefault();
+      
+      const id = document.getElementById('teamId').value || generateId();
+      const team = {
+        id,
+        name: document.getElementById('teamName').value.trim(),
+        members: document.getElementById('teamMembers').value.split('\n').filter(m => m.trim())
+      };
+      
+      const existingIndex = APP_STATE.teams.findIndex(t => t.id === id);
+      if (existingIndex >= 0) {
+        APP_STATE.teams[existingIndex] = team;
+      } else {
+        APP_STATE.teams.push(team);
+      }
+      
+      saveStateToStorage();
+      renderTeams();
+      populateAllSelects();
+      closeTeamModal();
+      showToast('Team saved!', 'success');
+    }
+
+    function editTeam(id) {
+      openTeamModal(id);
+    }
+
+    function deleteTeam(id) {
+      if (confirm('Are you sure you want to delete this team?')) {
+        APP_STATE.teams = APP_STATE.teams.filter(t => t.id !== id);
+        APP_STATE.responses = APP_STATE.responses.filter(r => r.teamId !== id);
+        APP_STATE.assessments = APP_STATE.assessments.filter(a => a.teamId !== id);
+        saveStateToStorage();
+        renderTeams();
+        populateAllSelects();
+        showToast('Team deleted', 'success');
+      }
+    }
+
+    // ==================== FILE UPLOAD ====================
+    function initDragAndDrop() {
+      const zone = document.getElementById('fileUploadZone');
+      
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('dragover');
+      });
+      
+      zone.addEventListener('dragleave', () => {
+        zone.classList.remove('dragover');
+      });
+      
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('dragover');
+        handleFiles(e.dataTransfer.files);
+      });
+    }
+
+    function handleFileUpload(event) {
+      handleFiles(event.target.files);
+    }
+
+    async function handleFiles(files) {
+      for (const file of files) {
+        try {
+          const text = await readFileAsText(file);
+          APP_STATE.knowledgeBase.push({
+            name: file.name,
+            content: text,
+            type: file.type
+          });
+        } catch (err) {
+          showToast(`Could not read ${file.name}`, 'error');
+        }
+      }
+      saveStateToStorage();
+      renderUploadedFiles();
+      showToast('Files uploaded!', 'success');
+    }
+
+    function readFileAsText(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsText(file);
+      });
+    }
+
+    function removeFile(index) {
+      APP_STATE.knowledgeBase.splice(index, 1);
+      saveStateToStorage();
+      renderUploadedFiles();
+    }
+
+    // ==================== CSV EXPORT (FEATURE 5) ====================
+    function exportResponsesCSV() {
+      if (APP_STATE.responses.length === 0) {
+        showToast('No responses to export', 'error');
+        return;
+      }
+      
+      const headers = ['Response ID', 'Timestamp', 'Project ID', 'Project Title', 'Team ID', 'Team Name', 'Depth', 'Emotion'];
+      const rows = APP_STATE.responses.map(r => {
+        const project = APP_STATE.projects.find(p => p.id === r.projectId);
+        const team = APP_STATE.teams.find(t => t.id === r.teamId);
+        return [
+          r.id,
+          r.timestamp,
+          r.projectId,
+          project?.title || 'Unknown',
+          r.teamId,
+          team?.name || 'Unknown',
+          r.depth,
+          r.emotion
+        ];
+      });
+      
+      downloadCSV([headers, ...rows], 'meta-physicalization-responses.csv');
+      showToast('Responses exported!', 'success');
+    }
+
+    function exportAssessmentsCSV() {
+      if (APP_STATE.assessments.length === 0) {
+        showToast('No assessments to export', 'error');
+        return;
+      }
+      
+      const headers = ['Assessment ID', 'Project ID', 'Project Title', 'Team ID', 'Team Name', 'Status', 'Strengths', 'Growth Areas', 'Feed Forward', 'Rubric Scores', 'Total Score', 'Created At', 'Released At'];
+      const rows = APP_STATE.assessments.map(a => {
+        const project = APP_STATE.projects.find(p => p.id === a.projectId);
+        const team = APP_STATE.teams.find(t => t.id === a.teamId);
+        const rubricScoresStr = a.rubricScores ? 
+          Object.entries(a.rubricScores).map(([k,v]) => `${k}:${v}`).join('; ') : '';
+        return [
+          a.id,
+          a.projectId,
+          project?.title || 'Unknown',
+          a.teamId,
+          team?.name || 'Unknown',
+          a.status,
+          `"${(a.strengths || '').replace(/"/g, '""')}"`,
+          `"${(a.growthAreas || '').replace(/"/g, '""')}"`,
+          `"${(a.feedForward || '').replace(/"/g, '""')}"`,
+          rubricScoresStr,
+          a.totalScore || '',
+          a.createdAt || '',
+          a.releasedAt || ''
+        ];
+      });
+      
+      downloadCSV([headers, ...rows], 'meta-physicalization-assessments.csv');
+      showToast('Assessments exported!', 'success');
+    }
+
+    function downloadCSV(data, filename) {
+      const csv = data.map(row => row.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+
+    function exportAllData() {
+      const dataStr = JSON.stringify(APP_STATE, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `meta-physicalization-backup-${new Date().toISOString().slice(0,10)}.json`;
+      link.click();
+      showToast('Data exported!', 'success');
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const imported = JSON.parse(e.target.result);
+          Object.assign(APP_STATE, imported);
+          saveStateToStorage();
+          renderAll();
+          showToast('Data imported successfully!', 'success');
+        } catch (err) {
+          showToast('Invalid backup file', 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // ==================== AUDIENCE FEEDBACK ====================
+    function populateAudienceSelects() {
+      const projectSelect = document.getElementById('audienceProjectSelect');
+      projectSelect.innerHTML = '<option value="">-- Select a project --</option>' +
+        APP_STATE.projects.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+      
+      loadTeamsForProject();
+    }
+
+    function loadTeamsForProject() {
+      const teamSelect = document.getElementById('audienceTeamSelect');
+      teamSelect.innerHTML = '<option value="">-- Select a team --</option>' +
+        APP_STATE.teams.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+    }
+
+    function selectDepth(depth) {
+      APP_STATE.selectedDepth = depth;
+      document.querySelectorAll('.depth-btn').forEach(btn => {
+        btn.classList.toggle('selected', parseInt(btn.dataset.depth) === depth);
+      });
+      checkFeedbackReady();
+    }
+
+    function selectEmotion(emotion) {
+      APP_STATE.selectedEmotion = emotion;
+      document.querySelectorAll('.emotion-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.classList.contains(emotion));
+      });
+      checkFeedbackReady();
+    }
+
+    function checkFeedbackReady() {
+      const projectId = document.getElementById('audienceProjectSelect').value;
+      const teamId = document.getElementById('audienceTeamSelect').value;
+      const ready = projectId && teamId && APP_STATE.selectedDepth && APP_STATE.selectedEmotion;
+      document.getElementById('submitFeedbackBtn').disabled = !ready;
+    }
+
+    function submitFeedback() {
+      const projectId = document.getElementById('audienceProjectSelect').value;
+      const teamId = document.getElementById('audienceTeamSelect').value;
+      
+      if (!projectId || !teamId || !APP_STATE.selectedDepth || !APP_STATE.selectedEmotion) {
+        showToast('Please complete all selections', 'error');
+        return;
+      }
+      
+      const response = {
+        id: generateId(),
+        projectId,
+        teamId,
+        depth: APP_STATE.selectedDepth,
+        emotion: APP_STATE.selectedEmotion,
+        timestamp: new Date().toISOString()
+      };
+      
+      APP_STATE.responses.push(response);
+      saveStateToStorage();
+      
+      APP_STATE.selectedDepth = null;
+      APP_STATE.selectedEmotion = null;
+      document.querySelectorAll('.depth-btn, .emotion-btn').forEach(btn => btn.classList.remove('selected'));
+      document.getElementById('submitFeedbackBtn').disabled = true;
+      
+      showToast('Thank you for your feedback!', 'success');
+      updateVisualization();
+    }
+
+    // ==================== VISUALIZATION ====================
+    function populateVisualizationSelect() {
+      const select = document.getElementById('vizProjectSelect');
+      select.innerHTML = '<option value="">All Projects</option>' +
+        APP_STATE.projects.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+    }
+
+    function updateVisualization() {
+      const projectId = document.getElementById('vizProjectSelect')?.value || '';
+      let responses = APP_STATE.responses;
+      
+      if (projectId) {
+        responses = responses.filter(r => r.projectId === projectId);
+      }
+      
+      const totalResponses = responses.length;
+      const avgDepth = totalResponses > 0 
+        ? (responses.reduce((sum, r) => sum + r.depth, 0) / totalResponses).toFixed(1)
+        : '0.0';
+      const impactScore = responses.reduce((sum, r) => sum + r.depth, 0);
+      
+      const emotionCounts = { positive: 0, neutral: 0, negative: 0 };
+      responses.forEach(r => emotionCounts[r.emotion]++);
+      const dominantEmotion = Object.entries(emotionCounts)
+        .sort((a, b) => b[1] - a[1])[0];
+      
+      document.getElementById('metricTotalResponses').textContent = totalResponses;
+      document.getElementById('metricAvgDepth').textContent = avgDepth;
+      document.getElementById('metricImpactScore').textContent = impactScore;
+      document.getElementById('metricDominantEmotion').textContent = 
+        totalResponses > 0 ? capitalize(dominantEmotion[0]) : '-';
+      
+      drawRadialWheel(responses, projectId);
+    }
+
+    function drawRadialWheel(responses, selectedProjectId) {
+      const svg = document.getElementById('radialWheel');
+      const width = 500;
+      const height = 500;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const maxRadius = 200;
+      const innerRadius = 40;
+      
+      let teamsToShow = APP_STATE.teams;
+      if (selectedProjectId) {
+        const teamIds = new Set(responses.map(r => r.teamId));
+        teamsToShow = APP_STATE.teams.filter(t => teamIds.has(t.id));
+      }
+      
+      if (teamsToShow.length === 0) {
+        svg.innerHTML = `
+          <text x="${centerX}" y="${centerY}" text-anchor="middle" fill="#94A3B8" font-size="14">
+            No feedback data to display
+          </text>
+        `;
+        return;
+      }
+      
+      const anglePerTeam = (2 * Math.PI) / teamsToShow.length;
+      const ringWidth = (maxRadius - innerRadius) / 5;
+      
+      let svgContent = '';
+      
+      teamsToShow.forEach((team, teamIndex) => {
+        const startAngle = teamIndex * anglePerTeam - Math.PI / 2;
+        const endAngle = startAngle + anglePerTeam - 0.02;
+        
+        const teamResponses = responses.filter(r => r.teamId === team.id);
+        
+        for (let depth = 1; depth <= 5; depth++) {
+          const ringInner = innerRadius + (depth - 1) * ringWidth;
+          const ringOuter = innerRadius + depth * ringWidth;
+          
+          const depthResponses = teamResponses.filter(r => r.depth === depth);
+          const count = depthResponses.length;
+          
+          const emotions = { positive: 0, neutral: 0, negative: 0 };
+          depthResponses.forEach(r => emotions[r.emotion]++);
+          
+          let color = '#E2E8F0';
+          let saturation = 0.1;
+          
+          if (count > 0) {
+            const maxEmotion = Object.entries(emotions).sort((a, b) => b[1] - a[1])[0][0];
+            saturation = Math.min(0.2 + (count * 0.15), 1);
+            
+            if (maxEmotion === 'positive') color = `rgba(233, 30, 140, ${saturation})`;
+            else if (maxEmotion === 'neutral') color = `rgba(244, 208, 63, ${saturation})`;
+            else color = `rgba(142, 68, 173, ${saturation})`;
+          }
+          
+          const path = describeArc(centerX, centerY, ringInner, ringOuter, startAngle, endAngle);
+          svgContent += `<path d="${path}" fill="${color}" stroke="#fff" stroke-width="1"/>`;
+        }
+        
+        const labelAngle = startAngle + anglePerTeam / 2;
+        const labelRadius = maxRadius + 25;
+        const labelX = centerX + labelRadius * Math.cos(labelAngle);
+        const labelY = centerY + labelRadius * Math.sin(labelAngle);
+        const rotation = (labelAngle * 180 / Math.PI) + (labelAngle > Math.PI / 2 && labelAngle < 3 * Math.PI / 2 ? 180 : 0);
+        
+        svgContent += `
+          <text x="${labelX}" y="${labelY}" text-anchor="middle" 
+                transform="rotate(${rotation}, ${labelX}, ${labelY})"
+                font-size="11" fill="#64748B" font-weight="500">
+            ${team.name}
+          </text>
+        `;
+      });
+      
+      svgContent += `<circle cx="${centerX}" cy="${centerY}" r="${innerRadius}" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>`;
+      svgContent += `<text x="${centerX}" y="${centerY}" text-anchor="middle" dy="0.35em" font-size="12" fill="#64748B">Impact</text>`;
+      
+      for (let depth = 1; depth <= 5; depth++) {
+        const labelRadius = innerRadius + (depth - 0.5) * ringWidth;
+        svgContent += `
+          <text x="${centerX + labelRadius}" y="${centerY - 5}" 
+                font-size="10" fill="#94A3B8" text-anchor="middle">
+            ${depth}
+          </text>
+        `;
+      }
+      
+      svg.innerHTML = svgContent;
+    }
+
+    function describeArc(cx, cy, innerRadius, outerRadius, startAngle, endAngle) {
+      const innerStart = polarToCartesian(cx, cy, innerRadius, endAngle);
+      const innerEnd = polarToCartesian(cx, cy, innerRadius, startAngle);
+      const outerStart = polarToCartesian(cx, cy, outerRadius, endAngle);
+      const outerEnd = polarToCartesian(cx, cy, outerRadius, startAngle);
+      
+      const largeArcFlag = endAngle - startAngle <= Math.PI ? "0" : "1";
+      
+      return [
+        "M", outerStart.x, outerStart.y,
+        "A", outerRadius, outerRadius, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y,
+        "L", innerEnd.x, innerEnd.y,
+        "A", innerRadius, innerRadius, 0, largeArcFlag, 1, innerStart.x, innerStart.y,
+        "Z"
+      ].join(" ");
+    }
+
+    function polarToCartesian(cx, cy, radius, angle) {
+      return {
+        x: cx + radius * Math.cos(angle),
+        y: cy + radius * Math.sin(angle)
+      };
+    }
+
+    // ==================== INSTRUCTOR DASHBOARD ====================
+    function populateInstructorSelects() {
+      const select = document.getElementById('instructorProjectSelect');
+      select.innerHTML = '<option value="">-- Select Project --</option>' +
+        APP_STATE.projects.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+    }
+
+    function loadInstructorTeams() {
+      const projectId = document.getElementById('instructorProjectSelect').value;
+      const container = document.getElementById('instructorTeamGrid');
+      
+      if (!projectId) {
+        container.innerHTML = '<div class="empty-state"><p>Select a project to view teams</p></div>';
+        return;
+      }
+      
+      container.innerHTML = APP_STATE.teams.map(team => {
+        const responses = APP_STATE.responses.filter(r => r.projectId === projectId && r.teamId === team.id);
+        const assessment = APP_STATE.assessments.find(a => a.projectId === projectId && a.teamId === team.id);
+        const status = assessment?.status || 'pending';
+        const statusClass = `status-${status.replace('_', '-')}`;
+        const statusLabel = {
+          'pending': 'Pending',
+          'ai_ready': 'AI Ready',
+          'curated': 'Curated',
+          'released': 'Released'
+        }[status] || 'Pending';
+        const isSelected = APP_STATE.selectedTeamForAssessment?.teamId === team.id && 
+                          APP_STATE.selectedTeamForAssessment?.projectId === projectId;
+        
+        return `
+          <div class="team-card ${isSelected ? 'selected' : ''}" onclick="selectTeamForAssessment('${team.id}', '${projectId}')" style="cursor: pointer; margin-bottom: 12px;">
+            <div class="team-header">
+              <div>
+                <div class="team-name">${team.name}</div>
+                <div class="team-members">${responses.length} responses</div>
+              </div>
+              <span class="status-badge ${statusClass}">${statusLabel}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectTeamForAssessment(teamId, projectId) {
+      APP_STATE.selectedTeamForAssessment = { teamId, projectId };
+      loadInstructorTeams(); // Refresh to show selection
+      renderTeamDetail(teamId, projectId);
+    }
+
+    function renderTeamDetail(teamId, projectId) {
+      const team = APP_STATE.teams.find(t => t.id === teamId);
+      const project = APP_STATE.projects.find(p => p.id === projectId);
+      const responses = APP_STATE.responses.filter(r => r.projectId === projectId && r.teamId === teamId);
+      const assessment = APP_STATE.assessments.find(a => a.projectId === projectId && a.teamId === teamId);
+      const notesKey = `${teamId}_${projectId}`;
+      const instructorNotes = APP_STATE.instructorNotes[notesKey] || '';
+      
+      if (!team || !project) return;
+      
+      const avgDepth = responses.length > 0 
+        ? (responses.reduce((sum, r) => sum + r.depth, 0) / responses.length).toFixed(1)
+        : 0;
+      const impactScore = responses.reduce((sum, r) => sum + r.depth, 0);
+      const emotions = { positive: 0, neutral: 0, negative: 0 };
+      responses.forEach(r => emotions[r.emotion]++);
+      
+      const container = document.getElementById('teamDetailContent');
+      container.innerHTML = `
+        <div class="flex-between mb-4">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 600;">${team.name}</h3>
+            <p style="color: var(--text-secondary);">${project.title}</p>
+          </div>
+          <span class="status-badge status-${(assessment?.status || 'pending').replace('_', '-')}">
+            ${capitalize((assessment?.status || 'pending').replace('_', ' '))}
+          </span>
+        </div>
+        
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="metric-value">${responses.length}</div>
+            <div class="metric-label">Responses</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${avgDepth}</div>
+            <div class="metric-label">Avg Depth</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${impactScore}</div>
+            <div class="metric-label">Impact Score</div>
+          </div>
+        </div>
+        
+        <div class="flex gap-2 mb-4" style="flex-wrap: wrap;">
+          <div style="background: rgba(233, 30, 140, 0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
+            😊 Positive: ${emotions.positive}
+          </div>
+          <div style="background: rgba(244, 208, 63, 0.3); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
+            🤔 Neutral: ${emotions.neutral}
+          </div>
+          <div style="background: rgba(142, 68, 173, 0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
+            😟 Challenging: ${emotions.negative}
+          </div>
+        </div>
+        
+        <!-- INSTRUCTOR NOTES (FEATURE 1) -->
+        <div class="instructor-notes">
+          <div class="instructor-notes-label">📝 Instructor Notes</div>
+          <textarea id="instructorNotesInput" placeholder="Add your personal observations about this team's work. These notes will be incorporated into the AI assessment...">${instructorNotes}</textarea>
+          <button class="btn btn-secondary btn-sm mt-2" onclick="saveInstructorNotes('${teamId}', '${projectId}')">💾 Save Notes</button>
+        </div>
+        
+        <div class="flex gap-2 mb-4">
+          <button class="btn btn-primary" onclick="generateAIAssessment('${teamId}', '${projectId}')" 
+                  ${!APP_STATE.apiKey ? 'disabled title="Configure API key first"' : ''}>
+            🤖 Generate AI Assessment
+          </button>
+        </div>
+        
+        ${assessment ? renderAssessmentPanel(assessment, project) : '<p style="color: var(--text-secondary);">No assessment generated yet. Add notes above and click "Generate AI Assessment".</p>'}
+      `;
+    }
+
+    // FEATURE 1: Save Instructor Notes
+    function saveInstructorNotes(teamId, projectId) {
+      const notesKey = `${teamId}_${projectId}`;
+      const notes = document.getElementById('instructorNotesInput').value;
+      APP_STATE.instructorNotes[notesKey] = notes;
+      saveStateToStorage();
+      showToast('Notes saved!', 'success');
+    }
+
+    // FEATURE 2: Rubric Score Assignment
+    function renderAssessmentPanel(assessment, project) {
+      const rubricScores = assessment.rubricScores || {};
+      
+      let rubricHtml = '';
+      if (project.rubric && project.rubric.length > 0) {
+        rubricHtml = `
+          <div class="assessment-section">
+            <div class="assessment-section-title">📊 Rubric Scores</div>
+            <table class="rubric-table">
+              <thead>
+                <tr>
+                  <th>Criterion</th>
+                  <th>Weight</th>
+                  <th>Score (0-100)</th>
+                  <th>Weighted</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${project.rubric.map((r, i) => {
+                  const score = rubricScores[r.criterion] || 0;
+                  const weighted = ((score * r.weight) / 100).toFixed(1);
+                  return `
+                    <tr>
+                      <td>${r.criterion}</td>
+                      <td>${r.weight}%</td>
+                      <td>
+                        <input type="number" class="rubric-score-input" 
+                               id="rubricScore_${i}" 
+                               value="${score}" 
+                               min="0" max="100"
+                               onchange="updateRubricScore('${assessment.id}', '${r.criterion}', this.value)">
+                      </td>
+                      <td class="weighted-score" id="weighted_${i}">${weighted}</td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" style="text-align: right; font-weight: 600;">Total Score:</td>
+                  <td class="rubric-total" id="totalScore">${assessment.totalScore?.toFixed(1) || '0.0'}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        `;
+      }
+      
+      return `
+        <div class="assessment-panel">
+          ${rubricHtml}
+          
+          <div class="assessment-section">
+            <div class="assessment-section-title">💪 Strengths</div>
+            <div class="assessment-content" contenteditable="true" data-field="strengths" id="strengthsContent">
+              ${assessment.strengths || 'Click to edit...'}
+            </div>
+          </div>
+          
+          <div class="assessment-section">
+            <div class="assessment-section-title">🌱 Growth Areas</div>
+            <div class="assessment-content" contenteditable="true" data-field="growthAreas" id="growthAreasContent">
+              ${assessment.growthAreas || 'Click to edit...'}
+            </div>
+          </div>
+          
+          <div class="assessment-section">
+            <div class="assessment-section-title">🔮 Feed Forward</div>
+            <div class="assessment-content" contenteditable="true" data-field="feedForward" id="feedForwardContent">
+              ${assessment.feedForward || 'Click to edit...'}
+            </div>
+          </div>
+          
+          <div class="flex gap-2 mt-4" style="flex-wrap: wrap;">
+            <button class="btn btn-success" onclick="saveAndCurateAssessment('${assessment.id}')">
+              ✓ Save & Mark Curated
+            </button>
+            <button class="btn btn-primary" onclick="releaseAssessment('${assessment.id}')">
+              📤 Release to Student
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateRubricScore(assessmentId, criterion, value) {
+      const assessment = APP_STATE.assessments.find(a => a.id === assessmentId);
+      if (!assessment) return;
+      
+      if (!assessment.rubricScores) assessment.rubricScores = {};
+      assessment.rubricScores[criterion] = parseInt(value) || 0;
+      
+      // Recalculate total
+      const project = APP_STATE.projects.find(p => p.id === assessment.projectId);
+      if (project && project.rubric) {
+        let total = 0;
+        project.rubric.forEach((r, i) => {
+          const score = assessment.rubricScores[r.criterion] || 0;
+          const weighted = (score * r.weight) / 100;
+          total += weighted;
+          
+          const weightedEl = document.getElementById(`weighted_${i}`);
+          if (weightedEl) weightedEl.textContent = weighted.toFixed(1);
+        });
+        
+        assessment.totalScore = total;
+        const totalEl = document.getElementById('totalScore');
+        if (totalEl) totalEl.textContent = total.toFixed(1);
+      }
+      
+      saveStateToStorage();
+    }
+
+    async function generateAIAssessment(teamId, projectId) {
+      if (!APP_STATE.apiKey) {
+        showToast('Please configure your API key first', 'error');
+        return;
+      }
+      
+      const team = APP_STATE.teams.find(t => t.id === teamId);
+      const project = APP_STATE.projects.find(p => p.id === projectId);
+      const responses = APP_STATE.responses.filter(r => r.projectId === projectId && r.teamId === teamId);
+      
+      if (responses.length === 0) {
+        showToast('No feedback data available for this team', 'error');
+        return;
+      }
+      
+      showToast('Generating AI assessment...', 'success');
+      
+      try {
+        const prompt = buildAssessmentPrompt(team, project, responses, teamId, projectId);
+        const aiResponse = await callClaudeAPI(prompt);
+        
+        // Initialize rubric scores
+        const rubricScores = {};
+        if (project.rubric) {
+          project.rubric.forEach(r => {
+            rubricScores[r.criterion] = 0;
+          });
+        }
+        
+        const assessment = {
+          id: generateId(),
+          teamId,
+          projectId,
+          status: 'ai_ready',
+          strengths: extractSection(aiResponse, 'STRENGTHS'),
+          growthAreas: extractSection(aiResponse, 'GROWTH AREAS'),
+          feedForward: extractSection(aiResponse, 'FEED FORWARD'),
+          rubricScores,
+          totalScore: 0,
+          aiGenerated: aiResponse,
+          createdAt: new Date().toISOString()
+        };
+        
+        const existingIndex = APP_STATE.assessments.findIndex(
+          a => a.teamId === teamId && a.projectId === projectId
+        );
+        if (existingIndex >= 0) {
+          // Preserve existing rubric scores
+          assessment.rubricScores = APP_STATE.assessments[existingIndex].rubricScores || rubricScores;
+          assessment.totalScore = APP_STATE.assessments[existingIndex].totalScore || 0;
+          APP_STATE.assessments[existingIndex] = assessment;
+        } else {
+          APP_STATE.assessments.push(assessment);
+        }
+        
+        saveStateToStorage();
+        renderTeamDetail(teamId, projectId);
+        loadInstructorTeams();
+        showToast('AI assessment generated!', 'success');
+        
+      } catch (error) {
+        console.error('AI Error:', error);
+        showToast('Error generating assessment: ' + error.message, 'error');
+      }
+    }
+
+    function buildAssessmentPrompt(team, project, responses, teamId, projectId) {
+      const avgDepth = (responses.reduce((sum, r) => sum + r.depth, 0) / responses.length).toFixed(1);
+      const emotions = { positive: 0, neutral: 0, negative: 0 };
+      responses.forEach(r => emotions[r.emotion]++);
+      
+      const knowledgeBaseText = APP_STATE.knowledgeBase
+        .map(f => `--- ${f.name} ---\n${f.content.substring(0, 2000)}`)
+        .join('\n\n');
+      
+      // FEATURE 1: Include instructor notes
+      const notesKey = `${teamId}_${projectId}`;
+      const instructorNotes = APP_STATE.instructorNotes[notesKey] || '';
+      
+      return `You are a pedagogical assessment assistant for design education, grounded in established learning theory.
+
+THEORETICAL FRAMEWORK:
+- Hattie & Timperley (2007): Structure feedback around Feed Up (goals), Feed Back (current status), Feed Forward (next steps)
+- Black & Wiliam (1998): Formative assessment should focus on specific qualities and improvement guidance
+- Panadero (2017): Support self-regulated learning through reflection prompts
+- Engeström (2001): Acknowledge multiple perspectives in learning
+
+COURSE CONTEXT:
+${APP_STATE.course ? `
+Course: ${APP_STATE.course.code} - ${APP_STATE.course.title}
+Learning Objectives: ${APP_STATE.course.learningObjectives}
+` : 'No course information available'}
+
+PROJECT CONTEXT:
+Project: ${project.title}
+Theme: ${project.theme || 'Not specified'}
+Objectives: ${project.objectives || 'Not specified'}
+Rubric Criteria: ${project.rubric?.map(r => `${r.criterion} (${r.weight}%)`).join(', ') || 'Not specified'}
+
+KNOWLEDGE BASE DOCUMENTS:
+${knowledgeBaseText || 'No additional documents uploaded'}
+
+TEAM: ${team.name}
+Members: ${team.members?.join(', ') || 'Not specified'}
+
+INSTRUCTOR'S PERSONAL NOTES AND OBSERVATIONS:
+${instructorNotes || 'No instructor notes provided'}
+
+AUDIENCE FEEDBACK DATA:
+- Total Responses: ${responses.length}
+- Average Impact Depth: ${avgDepth}/5
+- Emotion Distribution: Positive: ${emotions.positive}, Neutral: ${emotions.neutral}, Challenging: ${emotions.negative}
+- Response Details: ${responses.map(r => `Depth ${r.depth}, ${r.emotion}`).join('; ')}
+
+Based on this data, the instructor's observations, and pedagogical grounding, generate an assessment. Format your response with these exact headers:
+
+STRENGTHS:
+[List 2-3 specific strengths based on the feedback data, instructor notes, and rubric criteria]
+
+GROWTH AREAS:
+[List 2-3 specific areas for improvement, connected to learning objectives]
+
+FEED FORWARD:
+[Provide 2-3 actionable next steps for the student's development, framed as reflection prompts]
+
+Be specific, constructive, and ground your observations in the feedback data and instructor notes provided.`;
+    }
+
+    async function callClaudeAPI(prompt) {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': APP_STATE.apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1500,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error?.message || 'API request failed');
+      }
+      
+      const data = await response.json();
+      return data.content[0].text;
+    }
+
+    function extractSection(text, header) {
+      const regex = new RegExp(`${header}:\\s*([\\s\\S]*?)(?=\\n[A-Z]+:|$)`, 'i');
+      const match = text.match(regex);
+      return match ? match[1].trim() : '';
+    }
+
+    function saveAndCurateAssessment(assessmentId) {
+      const assessment = APP_STATE.assessments.find(a => a.id === assessmentId);
+      if (!assessment) return;
+      
+      // Get edited content
+      const strengthsEl = document.getElementById('strengthsContent');
+      const growthAreasEl = document.getElementById('growthAreasContent');
+      const feedForwardEl = document.getElementById('feedForwardContent');
+      
+      if (strengthsEl) assessment.strengths = strengthsEl.innerText;
+      if (growthAreasEl) assessment.growthAreas = growthAreasEl.innerText;
+      if (feedForwardEl) assessment.feedForward = feedForwardEl.innerText;
+      
+      assessment.status = 'curated';
+      assessment.curatedAt = new Date().toISOString();
+      
+      saveStateToStorage();
+      loadInstructorTeams();
+      showToast('Assessment saved and marked as curated!', 'success');
+    }
+
+    function releaseAssessment(assessmentId) {
+      const assessment = APP_STATE.assessments.find(a => a.id === assessmentId);
+      if (!assessment) return;
+      
+      // Save any edits first
+      const strengthsEl = document.getElementById('strengthsContent');
+      const growthAreasEl = document.getElementById('growthAreasContent');
+      const feedForwardEl = document.getElementById('feedForwardContent');
+      
+      if (strengthsEl) assessment.strengths = strengthsEl.innerText;
+      if (growthAreasEl) assessment.growthAreas = growthAreasEl.innerText;
+      if (feedForwardEl) assessment.feedForward = feedForwardEl.innerText;
+      
+      assessment.status = 'released';
+      assessment.releasedAt = new Date().toISOString();
+      
+      saveStateToStorage();
+      loadInstructorTeams();
+      renderTeamDetail(assessment.teamId, assessment.projectId);
+      showToast('Assessment released to student!', 'success');
+    }
+
+    // ==================== PROGRESS VIEW (FEATURE 6) ====================
+    function populateProgressSelects() {
+      const select = document.getElementById('progressTeamSelect');
+      select.innerHTML = '<option value="">-- Select Team --</option>' +
+        APP_STATE.teams.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+    }
+
+    function renderProgressView() {
+      const teamId = document.getElementById('progressTeamSelect').value;
+      const container = document.getElementById('progressContent');
+      
+      if (!teamId) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📈</div>
+            <div class="empty-state-title">Select a Team</div>
+            <p>Choose a team to view their progress across all projects</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const team = APP_STATE.teams.find(t => t.id === teamId);
+      if (!team) return;
+      
+      // Get data for each project
+      const projectData = APP_STATE.projects.map(project => {
+        const responses = APP_STATE.responses.filter(r => r.projectId === project.id && r.teamId === teamId);
+        const assessment = APP_STATE.assessments.find(a => a.projectId === project.id && a.teamId === teamId);
+        
+        const avgDepth = responses.length > 0 
+          ? responses.reduce((sum, r) => sum + r.depth, 0) / responses.length
+          : 0;
+        const impactScore = responses.reduce((sum, r) => sum + r.depth, 0);
+        
+        const emotions = { positive: 0, neutral: 0, negative: 0 };
+        responses.forEach(r => emotions[r.emotion]++);
+        const totalEmotions = emotions.positive + emotions.neutral + emotions.negative;
+        const positiveRatio = totalEmotions > 0 ? (emotions.positive / totalEmotions) * 100 : 0;
+        
+        return {
+          project,
+          responses: responses.length,
+          avgDepth,
+          impactScore,
+          positiveRatio,
+          totalScore: assessment?.totalScore || 0,
+          status: assessment?.status || 'pending'
+        };
+      });
+      
+      // Calculate overall trends
+      const projectsWithData = projectData.filter(p => p.responses > 0);
+      const avgDepthTrend = projectsWithData.length >= 2 ?
+        projectsWithData[projectsWithData.length - 1].avgDepth - projectsWithData[0].avgDepth : 0;
+      
+      container.innerHTML = `
+        <div class="mb-4">
+          <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;">📊 ${team.name} - Progress Overview</h4>
+          
+          <!-- Summary Cards -->
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-value">${projectsWithData.length}</div>
+              <div class="metric-label">Projects Completed</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">${projectData.reduce((sum, p) => sum + p.responses, 0)}</div>
+              <div class="metric-label">Total Responses</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value" style="color: ${avgDepthTrend >= 0 ? 'var(--secondary)' : 'var(--accent)'}">
+                ${avgDepthTrend >= 0 ? '↑' : '↓'} ${Math.abs(avgDepthTrend).toFixed(1)}
+              </div>
+              <div class="metric-label">Depth Trend</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Progress Bars for Each Project -->
+        <div class="card">
+          <h5 style="margin-bottom: 16px;">Average Impact Depth by Project</h5>
+          ${projectData.map((p, i) => `
+            <div class="progress-bar-container">
+              <div class="progress-bar-label">
+                <span>${p.project.title}</span>
+                <span>${p.avgDepth.toFixed(1)} / 5.0 (${p.responses} responses)</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" style="width: ${(p.avgDepth / 5) * 100}%; background: linear-gradient(90deg, var(--primary-light), var(--primary));">
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <!-- Rubric Scores if Available -->
+        <div class="card">
+          <h5 style="margin-bottom: 16px;">Rubric Scores by Project</h5>
+          ${projectData.map((p, i) => `
+            <div class="progress-bar-container">
+              <div class="progress-bar-label">
+                <span>${p.project.title}</span>
+                <span>${p.totalScore.toFixed(1)}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" style="width: ${p.totalScore}%; background: linear-gradient(90deg, var(--secondary), #10B981);">
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <!-- Detailed Timeline -->
+        <div class="card">
+          <h5 style="margin-bottom: 16px;">Project Timeline</h5>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Showcase Date</th>
+                <th>Responses</th>
+                <th>Avg Depth</th>
+                <th>Positive %</th>
+                <th>Rubric Score</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${projectData.map(p => `
+                <tr>
+                  <td>${p.project.title}</td>
+                  <td>${p.project.showcaseDate || '-'}</td>
+                  <td>${p.responses}</td>
+                  <td>${p.avgDepth.toFixed(1)}</td>
+                  <td>${p.positiveRatio.toFixed(0)}%</td>
+                  <td>${p.totalScore.toFixed(1)}%</td>
+                  <td><span class="status-badge status-${p.status.replace('_', '-')}">${capitalize(p.status.replace('_', ' '))}</span></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Visual Chart -->
+        <div class="card">
+          <h5 style="margin-bottom: 16px;">Impact Score Progression</h5>
+          <div style="display: flex; align-items: flex-end; gap: 20px; height: 200px; padding: 20px; background: var(--bg-secondary); border-radius: var(--radius);">
+            ${projectData.map((p, i) => {
+              const maxImpact = Math.max(...projectData.map(x => x.impactScore), 1);
+              const height = (p.impactScore / maxImpact) * 150;
+              return `
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">${p.impactScore}</div>
+                  <div style="width: 100%; height: ${height}px; background: linear-gradient(180deg, var(--primary), var(--primary-light)); border-radius: 4px 4px 0 0;"></div>
+                  <div style="font-size: 0.75rem; margin-top: 8px; text-align: center; color: var(--text-secondary);">P${i + 1}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+          <div style="display: flex; gap: 20px; margin-top: 8px; justify-content: center;">
+            ${projectData.map((p, i) => `
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">P${i + 1}: ${p.project.title}</div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==================== STUDENT VIEW ====================
+    function populateStudentSelects() {
+      const teamSelect = document.getElementById('studentTeamSelect');
+      const projectSelect = document.getElementById('studentProjectSelect');
+      
+      teamSelect.innerHTML = '<option value="">-- Select your team --</option>' +
+        APP_STATE.teams.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+      
+      projectSelect.innerHTML = '<option value="">-- Select project --</option>' +
+        APP_STATE.projects.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+    }
+
+    function loadStudentFeedback() {
+      const teamId = document.getElementById('studentTeamSelect').value;
+      const projectId = document.getElementById('studentProjectSelect').value;
+      const container = document.getElementById('studentFeedbackContent');
+      
+      if (!teamId || !projectId) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <div class="empty-state-title">No Feedback Available</div>
+            <p>Select your team and project to view your feedback</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const assessment = APP_STATE.assessments.find(
+        a => a.teamId === teamId && a.projectId === projectId && a.status === 'released'
+      );
+      
+      const project = APP_STATE.projects.find(p => p.id === projectId);
+      const responses = APP_STATE.responses.filter(r => r.projectId === projectId && r.teamId === teamId);
+      
+      if (!assessment) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">⏳</div>
+            <div class="empty-state-title">Feedback Pending</div>
+            <p>Your instructor has not yet released feedback for this project</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const avgDepth = responses.length > 0 
+        ? (responses.reduce((sum, r) => sum + r.depth, 0) / responses.length).toFixed(1)
+        : 0;
+      const emotions = { positive: 0, neutral: 0, negative: 0 };
+      responses.forEach(r => emotions[r.emotion]++);
+      
+      container.innerHTML = `
+        <!-- Metrics Summary -->
+        <div class="card">
+          <h4 style="margin-bottom: 16px;">📊 Your Audience Response Summary</h4>
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-value">${responses.length}</div>
+              <div class="metric-label">Responses</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">${avgDepth}</div>
+              <div class="metric-label">Avg Depth</div>
+            </div>
+            ${assessment.totalScore ? `
+            <div class="metric-card">
+              <div class="metric-value">${assessment.totalScore.toFixed(1)}%</div>
+              <div class="metric-label">Rubric Score</div>
+            </div>
+            ` : ''}
+          </div>
+          <div class="flex gap-2 mt-2" style="flex-wrap: wrap;">
+            <span style="background: rgba(233, 30, 140, 0.2); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem;">
+              😊 ${emotions.positive} positive
+            </span>
+            <span style="background: rgba(244, 208, 63, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem;">
+              🤔 ${emotions.neutral} neutral
+            </span>
+            <span style="background: rgba(142, 68, 173, 0.2); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem;">
+              😟 ${emotions.negative} challenging
+            </span>
+          </div>
+        </div>
+        
+        <!-- Rubric Scores if Available -->
+        ${assessment.rubricScores && project.rubric && project.rubric.length > 0 ? `
+        <div class="card">
+          <h4 style="margin-bottom: 16px;">📋 Rubric Assessment</h4>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Criterion</th>
+                <th>Weight</th>
+                <th>Your Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${project.rubric.map(r => `
+                <tr>
+                  <td>${r.criterion}</td>
+                  <td>${r.weight}%</td>
+                  <td><strong>${assessment.rubricScores[r.criterion] || 0}</strong>/100</td>
+                </tr>
+              `).join('')}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" style="text-align: right; font-weight: 600;">Total Score:</td>
+                <td class="rubric-total">${assessment.totalScore?.toFixed(1) || 0}%</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        ` : ''}
+        
+        <!-- Feed Up -->
+        <div class="feedback-section-card feed-up">
+          <div class="feedback-section-title">🎯 Feed Up: Where am I going?</div>
+          <div class="feedback-section-question">Understanding the goals and success criteria</div>
+          <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius);">
+            <strong>Project Objectives:</strong>
+            <p>${project?.objectives || 'No specific objectives defined'}</p>
+            ${project?.rubric?.length ? `
+              <div class="mt-4">
+                <strong>Rubric Criteria:</strong>
+                <ul style="margin-top: 8px; padding-left: 20px;">
+                  ${project.rubric.map(r => `<li>${r.criterion} (${r.weight}%)</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+        
+        <!-- Feed Back -->
+        <div class="feedback-section-card feed-back">
+          <div class="feedback-section-title">📍 Feed Back: How am I going?</div>
+          <div class="feedback-section-question">Understanding your current performance</div>
+          
+          <h5 style="margin: 16px 0 8px;">Strengths</h5>
+          ${assessment.strengths?.split('\n').filter(s => s.trim()).map(s => 
+            `<div class="strength-item">${s.replace(/^[-•*]\s*/, '')}</div>`
+          ).join('') || '<p>No strengths identified</p>'}
+          
+          <h5 style="margin: 16px 0 8px;">Growth Areas</h5>
+          ${assessment.growthAreas?.split('\n').filter(s => s.trim()).map(s => 
+            `<div class="growth-item">${s.replace(/^[-•*]\s*/, '')}</div>`
+          ).join('') || '<p>No growth areas identified</p>'}
+        </div>
+        
+        <!-- Feed Forward -->
+        <div class="feedback-section-card feed-forward">
+          <div class="feedback-section-title">🔮 Feed Forward: Where to next?</div>
+          <div class="feedback-section-question">Actions and reflections for continued growth</div>
+          
+          ${assessment.feedForward?.split('\n').filter(s => s.trim()).map(s => 
+            `<div class="reflection-prompt">${s.replace(/^[-•*]\s*/, '')}</div>`
+          ).join('') || '<p>No next steps provided</p>'}
+        </div>
+        
+        <!-- Self-Assessment -->
+        <div class="feedback-section-card">
+          <div class="feedback-section-title">✍️ Your Self-Assessment</div>
+          <div class="feedback-section-question">Reflect on your work and the feedback received</div>
+          
+          <div class="form-group">
+            <label class="form-label">What did you learn from this feedback?</label>
+            <textarea class="self-assessment-input" id="selfAssessment1" placeholder="Write your reflection here..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">What will you do differently in your next project?</label>
+            <textarea class="self-assessment-input" id="selfAssessment2" placeholder="Write your goals here..."></textarea>
+          </div>
+          
+          <button class="btn btn-primary" onclick="saveSelfAssessment('${teamId}', '${projectId}')">
+            💾 Save Self-Assessment
+          </button>
+        </div>
+      `;
+    }
+
+    function saveSelfAssessment(teamId, projectId) {
+      showToast('Self-assessment saved!', 'success');
+    }
+
+    // ==================== UTILITIES ====================
+    function populateAllSelects() {
+      populateAudienceSelects();
+      populateVisualizationSelect();
+      populateInstructorSelects();
+      populateStudentSelects();
+      populateProgressSelects();
+    }
+
+    function generateId() {
+      return 'id_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    // Check for URL params (for QR code direct access)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') === 'audience') {
+      document.querySelector('[data-tab="audience"]')?.click();
+    }
+
+    // Initialize on select changes
+    document.addEventListener('change', (e) => {
+      if (e.target.id === 'audienceProjectSelect' || e.target.id === 'audienceTeamSelect') {
+        checkFeedbackReady();
+      }
+    });
+  </script>
+</body>
+</html>    }
+
+    .header p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    .course-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    /* ==================== NAVIGATION TABS ==================== */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-card);
+      padding: 8px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-tab {
+      flex: 1;
       min-width: 120px;
       padding: 12px 20px;
       border: none;
