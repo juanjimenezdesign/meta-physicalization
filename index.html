@@ -13,31 +13,37 @@
    Scholarly · Warm · Ring-echoed · Refined
    ============================================================ */
 :root {
-  /* Paper palette */
-  --paper: #F7F3EC;
-  --paper-dim: #EFE9DE;
-  --paper-warm: #FBF8F2;
-  --card: #FFFFFF;
-  --ink: #1A1814;
-  --ink-soft: #3B362E;
-  --ink-mute: #6F6A60;
-  --ink-faint: #A39D92;
-  --rule: #DCD5C5;
-  --rule-soft: #E8E2D3;
+  /* Paper palette — warmer, cream-peach tones */
+  --paper: #F4E7CF;          /* warm cream */
+  --paper-dim: #EAD8AE;
+  --paper-warm: #FAEFD4;
+  --paper-deep: #E8D4A6;
+  --card: #FFFBEC;           /* warm off-white */
+  --card-warm: #FFF6E0;
+  --ink: #241810;            /* warm ink */
+  --ink-soft: #4A3624;
+  --ink-mute: #7F6B50;
+  --ink-faint: #B3A082;
+  --rule: #DBC69B;
+  --rule-soft: #E9D6B3;
 
-  /* Emotion triad (from meta-physicalization instrument) */
-  --pink: #E7709A;       /* positive */
-  --pink-soft: #F5C4D5;
-  --yellow: #E8B040;     /* neutral */
-  --yellow-soft: #F4DAA7;
-  --purple: #8A6FC9;     /* challenging */
-  --purple-soft: #CBBEE7;
+  /* Emotion triad — saturated for attention */
+  --pink: #E91E63;           /* vibrant hot pink — positive */
+  --pink-soft: #FBC7D8;
+  --pink-deep: #B8174E;
+  --yellow: #E5A516;         /* saturated amber — neutral */
+  --yellow-soft: #F5D98B;
+  --yellow-deep: #B87E0E;
+  --purple: #7C3AED;         /* royal purple — challenging */
+  --purple-soft: #D0BFF5;
+  --purple-deep: #5B21B6;
 
-  /* Supporting hues */
-  --navy: #1F3A5F;
+  /* Supporting hues — warm complements */
+  --navy: #1E3A5F;
   --navy-soft: #5A7CA3;
-  --sage: #5F7A5E;
-  --terracotta: #B85C3A;
+  --sage: #6B8B66;
+  --terracotta: #C2613E;
+  --gold: #C89B2B;
 
   /* States */
   --ok: #2E7D5B;
@@ -71,9 +77,10 @@ body {
   color: var(--ink);
   background: var(--paper);
   background-image:
-    radial-gradient(circle at 15% 10%, rgba(231,112,154,0.04), transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(138,111,201,0.04), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(232,176,64,0.03), transparent 60%);
+    radial-gradient(circle at 15% 10%, rgba(233,30,99,0.07), transparent 42%),
+    radial-gradient(circle at 85% 85%, rgba(124,58,237,0.07), transparent 42%),
+    radial-gradient(circle at 50% 55%, rgba(229,165,22,0.06), transparent 58%),
+    radial-gradient(circle at 75% 15%, rgba(194,97,62,0.05), transparent 45%);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -202,17 +209,39 @@ button, input, textarea, select {
   background: var(--ink);
   color: var(--paper);
 }
-.role-card.selected .role-icon-ring circle { stroke: var(--paper); }
 .role-card.selected .role-desc { color: var(--paper); opacity: 0.8; }
 .role-icon-ring {
-  width: 42px; height: 42px;
+  width: 52px; height: 52px;
   margin-bottom: 1rem;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.role-icon-ring circle {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 1.2;
-}
+.role-card:hover .role-icon-ring { transform: rotate(18deg) scale(1.08); }
+.role-icon-ring .ri-ring { fill: none; stroke-width: 1.3; }
+.role-icon-ring .ri-spoke { stroke: var(--ink-mute); stroke-width: 0.9; stroke-linecap: round; opacity: 0.6; }
+.role-icon-ring .ri-dot { stroke: none; }
+
+/* Audience: outer ring is vibrant pink, they are observing FROM outside */
+.role-card[data-role="audience"] .ri-ring-1 { stroke: var(--pink); stroke-width: 2; }
+.role-card[data-role="audience"] .ri-ring-2 { stroke: var(--ink); opacity: 0.35; }
+.role-card[data-role="audience"] .ri-ring-3 { stroke: var(--ink); opacity: 0.2; }
+.role-card[data-role="audience"] .ri-dot { fill: var(--pink); }
+
+/* Student: middle ring is amber, they are IN the process */
+.role-card[data-role="student"] .ri-ring-1 { stroke: var(--ink); opacity: 0.25; }
+.role-card[data-role="student"] .ri-ring-2 { stroke: var(--yellow); stroke-width: 2; }
+.role-card[data-role="student"] .ri-ring-3 { stroke: var(--ink); opacity: 0.4; }
+.role-card[data-role="student"] .ri-dot { fill: var(--yellow); }
+
+/* Instructor: all three emotion rings, fully orchestrating */
+.role-card[data-role="instructor"] .ri-ring-1 { stroke: var(--pink); stroke-width: 1.5; }
+.role-card[data-role="instructor"] .ri-ring-2 { stroke: var(--yellow); stroke-width: 1.5; }
+.role-card[data-role="instructor"] .ri-ring-3 { stroke: var(--purple); stroke-width: 1.5; }
+.role-card[data-role="instructor"] .ri-dot { fill: var(--ink); }
+
+/* When card is selected, invert to light on dark */
+.role-card.selected .role-icon-ring .ri-ring { stroke: var(--paper) !important; opacity: 1 !important; }
+.role-card.selected .role-icon-ring .ri-dot { fill: var(--paper) !important; }
+.role-card.selected .role-icon-ring .ri-spoke { stroke: var(--paper); opacity: 0.5; }
 .role-title {
   font-family: var(--serif);
   font-size: 1.3rem;
@@ -290,11 +319,28 @@ button, input, textarea, select {
 .topbar-brand {
   display: flex; align-items: center; gap: 0.75rem;
 }
-.brand-mark { width: 34px; height: 34px; }
-.brand-mark circle { fill: none; stroke: var(--ink); stroke-width: 1.2; }
-.brand-mark circle:nth-child(2) { stroke: var(--pink); }
-.brand-mark circle:nth-child(3) { stroke: var(--yellow); }
-.brand-mark circle:nth-child(4) { stroke: var(--purple); }
+.brand-mark { 
+  width: 40px; height: 40px;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  flex-shrink: 0;
+}
+.topbar-brand:hover .brand-mark { transform: rotate(22deg) scale(1.05); }
+.brand-mark .bm-ring { fill: none; stroke-width: 1.4; }
+.brand-mark .bm-ring-outer { stroke: var(--ink); }
+.brand-mark .bm-ring-pink { stroke: var(--pink); }
+.brand-mark .bm-ring-yellow { stroke: var(--yellow); }
+.brand-mark .bm-ring-purple { stroke: var(--purple); }
+.brand-mark .bm-spoke { stroke: var(--ink-mute); stroke-width: 0.9; stroke-linecap: round; opacity: 0.55; }
+.brand-mark .bm-core { fill: var(--pink); }
+.brand-mark .bm-center { fill: var(--card); }
+@keyframes bm-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.92); }
+}
+.brand-mark .bm-core { 
+  transform-origin: 20px 20px;
+  animation: bm-pulse 3.2s ease-in-out infinite;
+}
 .brand-text {
   font-family: var(--serif);
   font-size: 1.05rem;
@@ -1118,6 +1164,306 @@ textarea.tall { min-height: 160px; }
 }
 .modal h3 { font-size: 1.35rem; font-style: italic; font-weight: 400; margin-bottom: 0.5rem; }
 
+/* ============================================================
+   INSTRUCTOR SUB-NAV — three assessment altitudes
+   ============================================================ */
+.inst-subnav {
+  display: flex;
+  gap: 0;
+  background: var(--paper-warm);
+  border: 0.5px solid var(--rule);
+  border-radius: var(--r-lg);
+  padding: 4px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+}
+.inst-tab {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-mute);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--r-md);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+.inst-tab:hover { color: var(--ink); }
+.inst-tab.active {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+.inst-tab .inst-tab-ring {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+}
+.inst-tab .inst-tab-ring circle { fill: none; stroke: currentColor; stroke-width: 1.4; }
+.inst-tab .inst-tab-ring .ring-fill { fill: currentColor; stroke: none; }
+
+/* Observation input block */
+.obs-block {
+  background: linear-gradient(135deg, var(--card-warm), var(--paper-warm));
+  border: 0.5px solid var(--rule);
+  border-left: 3px solid var(--terracotta);
+  border-radius: var(--r-md);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.obs-block h4 {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.obs-block .obs-desc {
+  font-size: 0.82rem;
+  color: var(--ink-mute);
+  margin-bottom: 0.65rem;
+  line-height: 1.55;
+}
+.obs-ingredient-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.7rem;
+  background: rgba(194, 97, 62, 0.08);
+  border-radius: var(--r-sm);
+  border-left: 2px solid var(--terracotta);
+}
+
+/* Audience response summary mini-wheel in instructor view */
+.evidence-panel {
+  background: var(--card);
+  border: 0.5px solid var(--rule);
+  border-radius: var(--r-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+.evidence-panel h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+.evidence-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  font-size: 0.85rem;
+  border-bottom: 0.5px dashed var(--rule-soft);
+}
+.evidence-row:last-child { border-bottom: none; }
+.evidence-row .evid-label { color: var(--ink-soft); }
+.evidence-row .evid-val { font-family: var(--serif); font-weight: 500; }
+
+/* ============================================================
+   PROVENANCE PANEL — transparency for students
+   ============================================================ */
+.provenance {
+  background: linear-gradient(135deg, rgba(233,30,99,0.03), rgba(124,58,237,0.03), rgba(229,165,22,0.04));
+  border: 0.5px solid var(--rule);
+  border-radius: var(--r-lg);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.provenance::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(229,165,22,0.08), transparent 70%);
+  pointer-events: none;
+}
+.provenance-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.provenance-mark {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+}
+.provenance-mark circle { fill: none; stroke-width: 1.3; }
+.provenance-mark .pv-1 { stroke: var(--pink); }
+.provenance-mark .pv-2 { stroke: var(--yellow); }
+.provenance-mark .pv-3 { stroke: var(--purple); }
+.provenance-mark .pv-c { fill: var(--ink); }
+.provenance-head h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; font-style: italic; }
+.provenance-head h3 em { font-style: normal; font-weight: 600; }
+.provenance-lead {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 1.5rem;
+}
+
+.prov-section {
+  margin-bottom: 1.25rem;
+}
+.prov-section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding: 0.3rem 0.75rem;
+  border: 0.5px solid var(--rule);
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  background: var(--card);
+}
+.prov-section-title .pst-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.ingredient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.ingredient {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--card);
+  border: 0.5px solid var(--rule-soft);
+  border-radius: var(--r-sm);
+  font-size: 0.88rem;
+}
+.ingredient .ing-mark {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ingredient.present .ing-mark { background: var(--sage); box-shadow: 0 0 0 3px rgba(107, 139, 102, 0.15); }
+.ingredient.absent .ing-mark { background: var(--ink-faint); }
+.ingredient.absent { opacity: 0.55; }
+.ing-count {
+  font-family: var(--serif);
+  font-weight: 500;
+  color: var(--ink);
+  margin-left: auto;
+}
+
+/* Timeline */
+.prov-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.prov-timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: var(--rule);
+}
+.prov-step {
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding: 0.15rem 0;
+}
+.prov-step::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem; top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--card);
+  background: var(--ink-faint);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.prov-step.done::before { background: var(--sage); box-shadow: 0 0 0 1px var(--sage); }
+.prov-step.ai::before { background: var(--purple); box-shadow: 0 0 0 1px var(--purple); }
+.prov-step.human::before { background: var(--pink); box-shadow: 0 0 0 1px var(--pink); }
+.prov-step-title {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+.prov-step-meta {
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  margin-top: 0.15rem;
+}
+
+/* Balance bar */
+.balance-visual {
+  background: var(--card);
+  border: 0.5px solid var(--rule);
+  border-radius: var(--r-md);
+  padding: 1rem 1.15rem;
+}
+.balance-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.balance-label-row .b-ai { color: var(--purple-deep); }
+.balance-label-row .b-human { color: var(--pink-deep); }
+.balance-track {
+  display: flex;
+  height: 14px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: var(--rule-soft);
+}
+.balance-ai { background: var(--purple); transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.balance-human { background: var(--pink); transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.balance-sub {
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  margin-top: 0.6rem;
+  line-height: 1.55;
+}
+
+.disclosure-box {
+  background: var(--card);
+  border: 0.5px solid var(--rule);
+  border-left: 3px solid var(--ink);
+  border-radius: var(--r-sm);
+  padding: 1rem 1.15rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  font-family: var(--serif);
+  font-style: italic;
+}
+.disclosure-box strong { font-weight: 600; font-style: normal; }
+
 /* Scrollbar refinement */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -1173,29 +1519,49 @@ textarea.tall { min-height: 160px; }
 
     <div class="role-grid" id="roleGrid">
       <button class="role-card" data-role="audience" type="button">
-        <svg class="role-icon-ring" viewBox="0 0 42 42">
-          <circle cx="21" cy="21" r="18"/>
-          <circle cx="21" cy="21" r="12"/>
-          <circle cx="21" cy="21" r="5" fill="currentColor" stroke="none"/>
+        <svg class="role-icon-ring" viewBox="0 0 52 52" aria-hidden="true">
+          <g>
+            <line class="ri-spoke" x1="26" y1="3" x2="26" y2="8"/>
+            <line class="ri-spoke" x1="26" y1="44" x2="26" y2="49"/>
+            <line class="ri-spoke" x1="3" y1="26" x2="8" y2="26"/>
+            <line class="ri-spoke" x1="44" y1="26" x2="49" y2="26"/>
+          </g>
+          <circle class="ri-ring ri-ring-1" cx="26" cy="26" r="22"/>
+          <circle class="ri-ring ri-ring-2" cx="26" cy="26" r="15"/>
+          <circle class="ri-ring ri-ring-3" cx="26" cy="26" r="8"/>
+          <circle class="ri-dot" cx="26" cy="26" r="3.2"/>
         </svg>
         <div class="role-title">Audience</div>
         <div class="role-desc">Attend a showcase and provide reflection-depth feedback on projects.</div>
       </button>
       <button class="role-card" data-role="student" type="button">
-        <svg class="role-icon-ring" viewBox="0 0 42 42">
-          <circle cx="21" cy="21" r="18"/>
-          <circle cx="21" cy="21" r="12"/>
-          <circle cx="21" cy="21" r="6"/>
+        <svg class="role-icon-ring" viewBox="0 0 52 52" aria-hidden="true">
+          <g>
+            <line class="ri-spoke" x1="26" y1="10" x2="26" y2="14"/>
+            <line class="ri-spoke" x1="26" y1="38" x2="26" y2="42"/>
+            <line class="ri-spoke" x1="10" y1="26" x2="14" y2="26"/>
+            <line class="ri-spoke" x1="38" y1="26" x2="42" y2="26"/>
+          </g>
+          <circle class="ri-ring ri-ring-1" cx="26" cy="26" r="22"/>
+          <circle class="ri-ring ri-ring-2" cx="26" cy="26" r="15"/>
+          <circle class="ri-ring ri-ring-3" cx="26" cy="26" r="8"/>
+          <circle class="ri-dot" cx="26" cy="26" r="3.2"/>
         </svg>
         <div class="role-title">Student</div>
         <div class="role-desc">Access your team's curated feedback and self-assessment tools.</div>
       </button>
       <button class="role-card" data-role="instructor" type="button">
-        <svg class="role-icon-ring" viewBox="0 0 42 42">
-          <circle cx="21" cy="21" r="18"/>
-          <circle cx="21" cy="21" r="12"/>
-          <circle cx="21" cy="21" r="6"/>
-          <circle cx="21" cy="21" r="2" fill="currentColor" stroke="none"/>
+        <svg class="role-icon-ring" viewBox="0 0 52 52" aria-hidden="true">
+          <g>
+            <line class="ri-spoke" x1="26" y1="3" x2="26" y2="49"/>
+            <line class="ri-spoke" x1="3" y1="26" x2="49" y2="26"/>
+            <line class="ri-spoke" x1="9.8" y1="9.8" x2="42.2" y2="42.2"/>
+            <line class="ri-spoke" x1="42.2" y1="9.8" x2="9.8" y2="42.2"/>
+          </g>
+          <circle class="ri-ring ri-ring-1" cx="26" cy="26" r="22"/>
+          <circle class="ri-ring ri-ring-2" cx="26" cy="26" r="15"/>
+          <circle class="ri-ring ri-ring-3" cx="26" cy="26" r="8"/>
+          <circle class="ri-dot" cx="26" cy="26" r="2.6"/>
         </svg>
         <div class="role-title">Instructor</div>
         <div class="role-desc">Configure the course, curate AI-assisted assessments, and release feedback.</div>
@@ -1225,11 +1591,22 @@ textarea.tall { min-height: 160px; }
 <div class="app-shell" id="appShell">
   <div class="topbar">
     <div class="topbar-brand">
-      <svg class="brand-mark" viewBox="0 0 34 34">
-        <circle cx="17" cy="17" r="15"/>
-        <circle cx="17" cy="17" r="11"/>
-        <circle cx="17" cy="17" r="7"/>
-        <circle cx="17" cy="17" r="3" fill="currentColor" stroke="none" style="color:var(--ink)"/>
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-label="Meta-physicalization mark">
+        <g class="bm-spokes">
+          <line class="bm-spoke" x1="20" y1="2" x2="20" y2="7"/>
+          <line class="bm-spoke" x1="20" y1="33" x2="20" y2="38"/>
+          <line class="bm-spoke" x1="2" y1="20" x2="7" y2="20"/>
+          <line class="bm-spoke" x1="33" y1="20" x2="38" y2="20"/>
+          <line class="bm-spoke" x1="7.2" y1="7.2" x2="10.5" y2="10.5"/>
+          <line class="bm-spoke" x1="29.5" y1="7.2" x2="32.8" y2="10.5"/>
+          <line class="bm-spoke" x1="7.2" y1="32.8" x2="10.5" y2="29.5"/>
+          <line class="bm-spoke" x1="29.5" y1="32.8" x2="32.8" y2="29.5"/>
+        </g>
+        <circle class="bm-ring bm-ring-outer" cx="20" cy="20" r="17"/>
+        <circle class="bm-ring bm-ring-purple" cx="20" cy="20" r="13"/>
+        <circle class="bm-ring bm-ring-yellow" cx="20" cy="20" r="9"/>
+        <circle class="bm-core" cx="20" cy="20" r="5"/>
+        <circle class="bm-center" cx="20" cy="20" r="1.6"/>
       </svg>
       <div class="brand-text">Meta<em>‑physicalization</em></div>
     </div>
@@ -1483,63 +1860,178 @@ textarea.tall { min-height: 160px; }
       <div class="panel-head">
         <div class="eyebrow">Instructor · Dashboard</div>
         <h2>Assessment <em>workshop</em></h2>
-        <p class="subtitle">Review each team's audience reception, generate a grounded AI-assisted assessment, then curate and release the feedback to students. Human judgment is always final.</p>
+        <p class="subtitle">Review audience reception, add your own observations, generate a grounded AI-assisted draft, then curate and release. Human judgment is always final. Work at three altitudes: team, project, and course.</p>
       </div>
 
-      <div class="card">
-        <div class="card-head">
-          <div class="card-title"><h3>Project selection</h3></div>
-          <select id="instProjectFilter" style="min-width:200px;"></select>
-        </div>
-        <div class="dash-grid" id="teamGrid"></div>
+      <div class="inst-subnav" role="tablist">
+        <button class="inst-tab active" data-level="team" role="tab">
+          <svg class="inst-tab-ring" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><circle class="ring-fill" cx="9" cy="9" r="2.2"/></svg>
+          Per team · project
+        </button>
+        <button class="inst-tab" data-level="project" role="tab">
+          <svg class="inst-tab-ring" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="4"/><circle class="ring-fill" cx="9" cy="9" r="1.5"/></svg>
+          Per project
+        </button>
+        <button class="inst-tab" data-level="course" role="tab">
+          <svg class="inst-tab-ring" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="4.5"/><circle cx="9" cy="9" r="2"/></svg>
+          Whole course
+        </button>
       </div>
 
-      <div class="card hidden" id="teamDetailCard">
-        <div class="card-head">
-          <div class="card-title">
-            <h3 id="teamDetailName">Team name</h3>
-            <span class="status-badge status-pending" id="teamDetailStatus">Pending</span>
+      <!-- TEAM × PROJECT LEVEL -->
+      <div class="inst-view" id="instView-team">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><h3>Project selection</h3></div>
+            <select id="instProjectFilter" style="min-width:200px;"></select>
           </div>
-          <button class="btn-ghost" onclick="closeTeamDetail()">× Close</button>
+          <div class="dash-grid" id="teamGrid"></div>
         </div>
 
-        <!-- Team metrics -->
-        <div class="row4" id="teamMetrics" style="margin-bottom:1.5rem;"></div>
-
-        <!-- AI actions -->
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-          <button class="btn btn-primary" id="genAssessmentBtn" onclick="generateAssessment()">
-            <span id="genBtnLabel">✦ Generate AI-assisted assessment</span>
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="releaseAssessment()" id="releaseBtn" disabled>Release to team</button>
-        </div>
-
-        <!-- Curation blocks -->
-        <div id="curationArea" class="hidden">
-          <div class="assessment-block">
-            <h4>Feed Up · Where they are going</h4>
-            <textarea id="curateFeedUp" class="tall" placeholder="Restate project objectives and rubric expectations."></textarea>
-          </div>
-          <div class="assessment-block">
-            <h4>Feed Back · How they are going</h4>
-            <textarea id="curateFeedBack" class="tall" placeholder="Interpret the audience response. Identify strengths grounded in the data."></textarea>
-          </div>
-          <div class="assessment-block">
-            <h4>Feed Forward · Where to next</h4>
-            <textarea id="curateFeedForward" class="tall" placeholder="Actionable next steps and reflection prompts."></textarea>
-          </div>
-          <div class="assessment-block">
-            <h4>Instructor notes (private)</h4>
-            <textarea id="curateNotes" placeholder="Private notes only visible to you."></textarea>
-          </div>
-          <div class="row2">
-            <div class="field">
-              <label>Rubric score (out of 100)</label>
-              <input type="number" id="curateGrade" min="0" max="100" placeholder="—" />
+        <div class="card hidden" id="teamDetailCard">
+          <div class="card-head">
+            <div class="card-title">
+              <h3 id="teamDetailName">Team name</h3>
+              <span class="status-badge status-pending" id="teamDetailStatus">Pending</span>
             </div>
-            <div class="field">
-              <label>Grade weight of this project (%)</label>
-              <input type="number" id="curateWeight" min="0" max="100" readonly />
+            <button class="btn-ghost" onclick="closeTeamDetail()">× Close</button>
+          </div>
+
+          <!-- Team metrics -->
+          <div class="row4" id="teamMetrics" style="margin-bottom:1.5rem;"></div>
+
+          <!-- Evidence panel -->
+          <div class="evidence-panel" id="teamEvidencePanel"></div>
+
+          <!-- Instructor observations (INPUT to AI) -->
+          <div class="obs-block">
+            <h4>◉ Instructor observations · input to AI</h4>
+            <div class="obs-desc">Your direct observations of this team on this project — process notes, presentation dynamics, artifact qualities, context the audience data alone cannot capture. The AI will consider these alongside the audience response, rubric, and course documents when drafting the assessment.</div>
+            <textarea id="instrObsTeam" class="tall" placeholder="e.g. Strong conceptual leap in the second iteration. Team worked well under pressure. The artifact's tactile affordance was intentionally restrained to highlight the data layer — this may explain the bimodal audience response..."></textarea>
+            <div class="obs-ingredient-hint">
+              <span>✦</span>
+              <span>These notes join the audience data, rubric, objectives, and uploaded course documents as grounding material for the AI draft.</span>
+            </div>
+          </div>
+
+          <!-- AI actions -->
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <button class="btn btn-primary" id="genAssessmentBtn" onclick="generateAssessment()">
+              <span id="genBtnLabel">✦ Generate AI-assisted draft</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="releaseAssessment()" id="releaseBtn" disabled>Release to team</button>
+          </div>
+
+          <!-- Curation blocks -->
+          <div id="curationArea" class="hidden">
+            <div class="assessment-block">
+              <h4>Feed Up · Where they are going</h4>
+              <textarea id="curateFeedUp" class="tall" placeholder="Restate project objectives and rubric expectations."></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Feed Back · How they are going</h4>
+              <textarea id="curateFeedBack" class="tall" placeholder="Interpret the audience response. Identify strengths grounded in the data."></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Feed Forward · Where to next</h4>
+              <textarea id="curateFeedForward" class="tall" placeholder="Actionable next steps and reflection prompts."></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Instructor private notes (not shared with students)</h4>
+              <textarea id="curateNotes" placeholder="Private notes only visible to you."></textarea>
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label>Rubric score (out of 100)</label>
+                <input type="number" id="curateGrade" min="0" max="100" placeholder="—" />
+              </div>
+              <div class="field">
+                <label>Grade weight of this project (%)</label>
+                <input type="number" id="curateWeight" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT LEVEL -->
+      <div class="inst-view hidden" id="instView-project">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><h3>Project-level synthesis</h3></div>
+            <select id="projAssessFilter" style="min-width:200px;"></select>
+          </div>
+          <div class="card-desc">An overview of how the selected project went across all teams. The AI draft synthesises patterns in the audience data, weighs them against the rubric and objectives, and integrates your observations.</div>
+
+          <div class="row4" id="projMetrics" style="margin-bottom:1.5rem;"></div>
+
+          <div class="obs-block">
+            <h4>◉ Your observations on this project · input to AI</h4>
+            <div class="obs-desc">What went well across all teams? Where did the brief land or miss? What context should the AI know about how this project unfolded?</div>
+            <textarea id="instrObsProject" class="tall" placeholder="e.g. The project brief emphasised abstraction, and most teams pushed further than I expected. The third studio critique shifted the trajectory notably..."></textarea>
+          </div>
+
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <button class="btn btn-primary" id="genProjAssessBtn" onclick="generateProjectAssessment()">
+              <span id="genProjBtnLabel">✦ Generate project synthesis</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="releaseProjectAssessment()" id="releaseProjBtn" disabled>Release to students</button>
+          </div>
+
+          <div id="projCurationArea" class="hidden">
+            <div class="assessment-block">
+              <h4>What this project achieved</h4>
+              <textarea id="projCurateAchieved" class="tall"></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Patterns across teams</h4>
+              <textarea id="projCuratePatterns" class="tall"></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Connection to the next step in the course</h4>
+              <textarea id="projCurateNext" class="tall"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COURSE LEVEL -->
+      <div class="inst-view hidden" id="instView-course">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><h3>Whole-course narrative</h3></div>
+          </div>
+          <div class="card-desc">A longitudinal view across all projects and teams. The AI draft reads the arc of the term, comparing audience reception and depth across projects, and integrating your observations on the course as a whole.</div>
+
+          <div class="row4" id="courseMetrics" style="margin-bottom:1.5rem;"></div>
+
+          <div class="evidence-panel" id="courseEvidencePanel"></div>
+
+          <div class="obs-block">
+            <h4>◉ Your reflections on the course · input to AI</h4>
+            <div class="obs-desc">What pedagogical story did this term tell? Where did students grow most? What surprised you? Any shifts that influenced the trajectory — guest critics, external events, cohort dynamics?</div>
+            <textarea id="instrObsCourse" class="tall" placeholder="e.g. The cohort entered with uneven data literacy. By Project 2 the shift toward audience-centred design was visible in the meta-physicalization's Impact Score. The introduction of LSP in week 6 produced..."></textarea>
+          </div>
+
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <button class="btn btn-primary" id="genCourseAssessBtn" onclick="generateCourseAssessment()">
+              <span id="genCourseBtnLabel">✦ Generate course synthesis</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="releaseCourseAssessment()" id="releaseCourseBtn" disabled>Release to cohort</button>
+          </div>
+
+          <div id="courseCurationArea" class="hidden">
+            <div class="assessment-block">
+              <h4>Arc of the term</h4>
+              <textarea id="courseCurateArc" class="tall"></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Evidence of progression</h4>
+              <textarea id="courseCurateProgression" class="tall"></textarea>
+            </div>
+            <div class="assessment-block">
+              <h4>Looking ahead</h4>
+              <textarea id="courseCurateAhead" class="tall"></textarea>
             </div>
           </div>
         </div>
@@ -1648,8 +2140,15 @@ function defaultState() {
     projects: [], // {id, name, theme, description, objectives, rubricText, rubricFile, weight, audienceQuestion, useDefaultQuestion}
     teams: [],    // {id, name, members}
     feedback: [], // {id, projectId, teamId, depth, emotion, ts}
-    assessments: {}, // keyed by `${projectId}_${teamId}` -> {aiContent, feedUp, feedBack, feedForward, notes, grade, status}
-    selfAssessments: {} // keyed same way -> {text}
+    assessments: {},        // keyed by `${projectId}_${teamId}` -> team assessment
+    projectAssessments: {}, // keyed by projectId -> project-level assessment
+    courseAssessment: null, // single course-level assessment object
+    instructorObs: {
+      teams: {},    // keyed by `${projectId}_${teamId}` -> observation text
+      projects: {}, // keyed by projectId -> observation text
+      course: ''    // course-wide observation text
+    },
+    selfAssessments: {} // keyed same as assessments -> {text}
   };
 }
 
@@ -1658,10 +2157,18 @@ function loadState() {
     const raw = localStorage.getItem('metaphys_v3');
     if (!raw) return defaultState();
     const parsed = JSON.parse(raw);
-    return { ...defaultState(), ...parsed,
-      course: { ...defaultState().course, ...(parsed.course || {}) },
-      auth: { ...defaultState().auth, ...(parsed.auth || {}) },
+    const base = defaultState();
+    return { ...base, ...parsed,
+      course: { ...base.course, ...(parsed.course || {}) },
+      auth: { ...base.auth, ...(parsed.auth || {}) },
       assessments: parsed.assessments || {},
+      projectAssessments: parsed.projectAssessments || {},
+      courseAssessment: parsed.courseAssessment || null,
+      instructorObs: {
+        teams: parsed.instructorObs?.teams || {},
+        projects: parsed.instructorObs?.projects || {},
+        course: parsed.instructorObs?.course || ''
+      },
       selfAssessments: parsed.selfAssessments || {}
     };
   } catch (e) {
@@ -2385,22 +2892,57 @@ function arcPath(cx, cy, rInner, rOuter, a0, a1, fill) {
 // ============================================================
 // INSTRUCTOR DASHBOARD
 // ============================================================
+let instLevel = 'team';
 let instCurrentTeamId = null;
 let instCurrentProjectId = null;
+let instCurrentProjAssessId = null;
 
 function renderInstructorDashboard() {
-  const sel = $('#instProjectFilter');
+  // Bind sub-nav once
+  if (!renderInstructorDashboard._bound) {
+    document.querySelectorAll('.inst-tab').forEach(t => {
+      t.addEventListener('click', () => {
+        instLevel = t.dataset.level;
+        document.querySelectorAll('.inst-tab').forEach(x => x.classList.toggle('active', x === t));
+        document.querySelectorAll('.inst-view').forEach(v => {
+          v.classList.toggle('hidden', v.id !== 'instView-' + instLevel);
+        });
+        renderCurrentInstView();
+      });
+    });
+    renderInstructorDashboard._bound = true;
+  }
+
   if (!state.projects.length) {
     $('#teamGrid').innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><h4>No projects configured</h4><p>Add projects in Setup to begin curating assessments.</p></div>`;
     return;
   }
+
+  // TEAM LEVEL
+  const sel = $('#instProjectFilter');
   sel.innerHTML = state.projects.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('');
   if (!instCurrentProjectId || !state.projects.find(p => p.id === instCurrentProjectId)) {
     instCurrentProjectId = state.projects[0].id;
   }
   sel.value = instCurrentProjectId;
   sel.onchange = () => { instCurrentProjectId = sel.value; drawTeamGrid(); };
-  drawTeamGrid();
+
+  // PROJECT LEVEL
+  const projSel = $('#projAssessFilter');
+  projSel.innerHTML = state.projects.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  if (!instCurrentProjAssessId || !state.projects.find(p => p.id === instCurrentProjAssessId)) {
+    instCurrentProjAssessId = state.projects[0].id;
+  }
+  projSel.value = instCurrentProjAssessId;
+  projSel.onchange = () => { instCurrentProjAssessId = projSel.value; renderProjectAssessmentView(); };
+
+  renderCurrentInstView();
+}
+
+function renderCurrentInstView() {
+  if (instLevel === 'team') drawTeamGrid();
+  else if (instLevel === 'project') renderProjectAssessmentView();
+  else if (instLevel === 'course') renderCourseAssessmentView();
 }
 
 function drawTeamGrid() {
@@ -2460,11 +3002,35 @@ function openTeamDetail(tid) {
     <div class="viz-stat"><div class="viz-stat-label">Impact</div><div class="viz-stat-val">${impact}</div></div>
     <div class="viz-stat"><div class="viz-stat-label">Emotion mix</div>
       <div style="display:flex;gap:0.5rem;font-size:0.8rem;margin-top:0.25rem;">
-        <span style="color:var(--pink);">●${pos}</span>
-        <span style="color:#C79830;">●${neu}</span>
-        <span style="color:var(--purple);">●${cha}</span>
+        <span style="color:var(--pink-deep);">●${pos}</span>
+        <span style="color:var(--yellow-deep);">●${neu}</span>
+        <span style="color:var(--purple-deep);">●${cha}</span>
       </div>
     </div>`;
+
+  // Evidence panel — grounding materials summary
+  const kbCount = state.course.knowledgeBase.length;
+  const rubricPresent = !!(p.rubricText || p.rubricFile);
+  const obsLen = (state.instructorObs.teams[key] || '').trim().length;
+  $('#teamEvidencePanel').innerHTML = `
+    <h4>Grounding materials for this assessment</h4>
+    <div class="evidence-row"><span class="evid-label">Anonymous audience responses</span><span class="evid-val">${fb.length}</span></div>
+    <div class="evidence-row"><span class="evid-label">Project rubric available</span><span class="evid-val">${rubricPresent ? 'Yes' : 'No'}</span></div>
+    <div class="evidence-row"><span class="evid-label">Course knowledge base</span><span class="evid-val">${kbCount} document${kbCount === 1 ? '' : 's'}</span></div>
+    <div class="evidence-row"><span class="evid-label">Course learning objectives</span><span class="evid-val">${state.course.learningObjectives ? 'Present' : 'Missing'}</span></div>
+    <div class="evidence-row"><span class="evid-label">Your instructor observations</span><span class="evid-val">${obsLen > 0 ? obsLen + ' chars' : 'Not yet added'}</span></div>
+  `;
+
+  // Instructor observations field
+  $('#instrObsTeam').value = state.instructorObs.teams[key] || '';
+  $('#instrObsTeam').oninput = e => {
+    state.instructorObs.teams[key] = e.target.value;
+    save();
+    // refresh evidence count
+    const len = e.target.value.trim().length;
+    const row = $('#teamEvidencePanel').querySelectorAll('.evidence-row')[4];
+    if (row) row.querySelector('.evid-val').textContent = len > 0 ? len + ' chars' : 'Not yet added';
+  };
 
   // Curation area
   $('#curationArea').classList.toggle('hidden', !a);
@@ -2473,12 +3039,15 @@ function openTeamDetail(tid) {
     $('#curateFeedBack').value = a.feedBack || '';
     $('#curateFeedForward').value = a.feedForward || '';
     $('#curateNotes').value = a.notes || '';
-    $('#curateGrade').value = a.grade || '';
+    $('#curateGrade').value = a.grade != null ? a.grade : '';
   }
   $('#curateWeight').value = p.weight;
 
   // Release button
   $('#releaseBtn').disabled = !a || status === 'pending';
+
+  // Update gen button label
+  $('#genBtnLabel').textContent = a ? '✦ Regenerate AI-assisted draft' : '✦ Generate AI-assisted draft';
 
   // Bind curation inputs
   ['curateFeedUp','curateFeedBack','curateFeedForward','curateNotes','curateGrade'].forEach(id => {
@@ -2493,7 +3062,6 @@ function openTeamDetail(tid) {
       if (state.assessments[key].status === 'ready') state.assessments[key].status = 'curated';
       save();
       drawTeamGrid();
-      // update status pill
       const s = state.assessments[key].status;
       $('#teamDetailStatus').className = `status-badge status-${s}`;
       $('#teamDetailStatus').textContent = labels[s];
@@ -2520,35 +3088,57 @@ async function generateAssessment() {
   $('#genBtnLabel').innerHTML = '<span class="spinner"></span> Generating...';
 
   try {
-    const prompt = buildAssessmentPrompt(p, t, fb);
+    const key = `${p.id}_${t.id}`;
+    const obs = state.instructorObs.teams[key] || '';
+    const prompt = buildAssessmentPrompt(p, t, fb, obs);
     const docs = collectDocsForPrompt(p);
     const response = await callClaude(prompt, docs);
 
     // Parse sections
     const sections = parseAssessmentResponse(response);
-    const key = `${p.id}_${t.id}`;
+
+    // Build ingredients snapshot — used for provenance transparency
+    const snapshot = {
+      audienceCount: fb.length,
+      rubricPresent: !!(p.rubricText || p.rubricFile),
+      rubricFileUsed: !!p.rubricFile,
+      rubricTextUsed: !!p.rubricText,
+      kbDocCount: state.course.knowledgeBase.length,
+      kbDocNames: state.course.knowledgeBase.map(k => k.name),
+      instructorObsLength: obs.trim().length,
+      instructorObsPresent: obs.trim().length > 0,
+      courseObjectivesPresent: !!state.course.learningObjectives,
+      projectObjectivesPresent: !!p.objectives
+    };
+
     state.assessments[key] = {
       ...state.assessments[key],
-      aiContent: response,
+      aiModel: 'claude-opus-4-7',
+      aiRawResponse: response,
+      aiDraft: {
+        feedUp: sections.feedUp,
+        feedBack: sections.feedBack,
+        feedForward: sections.feedForward
+      },
       feedUp: sections.feedUp,
       feedBack: sections.feedBack,
       feedForward: sections.feedForward,
+      ingredientsSnapshot: snapshot,
       status: 'ready',
       generatedAt: Date.now()
     };
     save();
     openTeamDetail(t.id);
     drawTeamGrid();
-    toast('AI assessment generated — review and curate before release.');
+    toast('AI draft generated — review and curate before release.');
   } catch (err) {
     toast('Error: ' + err.message, 'err');
   } finally {
     $('#genAssessmentBtn').disabled = false;
-    $('#genBtnLabel').textContent = '✦ Regenerate AI-assisted assessment';
   }
 }
 
-function buildAssessmentPrompt(project, team, feedback) {
+function buildAssessmentPrompt(project, team, feedback, observations) {
   const total = feedback.length;
   const byDepth = [1,2,3,4,5].map(d => feedback.filter(f => f.depth === d).length);
   const byEmo = { pos: feedback.filter(f => f.emotion === 'positive').length,
@@ -2563,10 +3153,10 @@ function buildAssessmentPrompt(project, team, feedback) {
 - Engeström's expansive learning — feedback as a resource for collective development.
 - Panadero's review of self-regulated learning — feedback should cultivate self-monitoring and metacognition.
 
-Your tone: constructive, specific, and grounded in the audience evidence. Avoid praise-only framing. Do not assign grades.
+Your tone: constructive, specific, and grounded in the evidence. Avoid praise-only framing. Do not assign grades. The instructor reviews and curates your draft before anything reaches students.
 
 ===== COURSE =====
-Code: ${project ? state.course.code : ''}
+Code: ${state.course.code}
 Title: ${state.course.title}
 Description: ${state.course.description || '(not provided)'}
 Learning objectives:
@@ -2586,12 +3176,15 @@ ${project.rubricText || '(see attached rubric file if available)'}
 Team: ${team.name}
 Members: ${team.members || 'n/a'}
 
-===== AUDIENCE RESPONSE DATA =====
+===== AUDIENCE RESPONSE DATA (anonymous, aggregated) =====
 Total responses: ${total}
 Average depth (1–5): ${avg}
 Impact score (Σ depth²): ${impact}
 Depth distribution (1→5): ${byDepth.join(', ')}
 Emotion mix: Positive ${byEmo.pos} · Neutral ${byEmo.neu} · Challenging ${byEmo.cha}
+
+===== INSTRUCTOR OBSERVATIONS =====
+${observations && observations.trim().length > 0 ? observations : '(The instructor has not added written observations for this team yet. Work from the audience data and project materials alone.)'}
 
 ===== TASK =====
 Produce a structured assessment with these three sections, each 80–140 words, addressed directly to the student team (second person):
@@ -2600,7 +3193,7 @@ Produce a structured assessment with these three sections, each 80–140 words, 
 Restate the project objectives and rubric expectations in plain language. Help the team re-anchor in what they were aiming at.
 
 ## FEED BACK
-Interpret the audience data in light of the objectives and rubric. Identify strengths AND areas where the data suggests gaps. Be specific about what the depth distribution and emotional mix indicate.
+Interpret the audience data in light of the objectives and rubric. Identify strengths AND areas where the data suggests gaps. If the instructor's observations add context, weave that context in naturally (attributed as "your instructor notes..." when appropriate). Be specific about what the depth distribution and emotional mix indicate.
 
 ## FEED FORWARD
 Give 3–4 concrete, actionable next steps. End with one reflection prompt for the team to discuss together.
@@ -2687,6 +3280,378 @@ function releaseAssessment() {
 }
 
 // ============================================================
+// PROJECT-LEVEL ASSESSMENT
+// ============================================================
+function renderProjectAssessmentView() {
+  const p = state.projects.find(x => x.id === instCurrentProjAssessId);
+  if (!p) return;
+  const fb = state.feedback.filter(f => f.projectId === p.id);
+  const teams = state.teams;
+  const total = fb.length;
+  const avg = total ? (fb.reduce((s, f) => s + f.depth, 0) / total).toFixed(2) : '—';
+  const impact = fb.reduce((s, f) => s + f.depth * f.depth, 0);
+  const teamsWithData = teams.filter(t => fb.some(f => f.teamId === t.id)).length;
+
+  $('#projMetrics').innerHTML = `
+    <div class="viz-stat"><div class="viz-stat-label">Teams</div><div class="viz-stat-val">${teams.length}</div><div class="viz-stat-sub">${teamsWithData} with responses</div></div>
+    <div class="viz-stat"><div class="viz-stat-label">Total responses</div><div class="viz-stat-val">${total}</div></div>
+    <div class="viz-stat"><div class="viz-stat-label">Avg. depth</div><div class="viz-stat-val">${avg}</div></div>
+    <div class="viz-stat"><div class="viz-stat-label">Impact score</div><div class="viz-stat-val">${impact}</div></div>
+  `;
+
+  $('#instrObsProject').value = state.instructorObs.projects[p.id] || '';
+  $('#instrObsProject').oninput = e => {
+    state.instructorObs.projects[p.id] = e.target.value;
+    save();
+  };
+
+  const a = state.projectAssessments[p.id];
+  $('#projCurationArea').classList.toggle('hidden', !a);
+  if (a) {
+    $('#projCurateAchieved').value = a.achieved || '';
+    $('#projCuratePatterns').value = a.patterns || '';
+    $('#projCurateNext').value = a.next || '';
+  }
+  $('#releaseProjBtn').disabled = !a;
+  $('#genProjBtnLabel').textContent = a ? '✦ Regenerate project synthesis' : '✦ Generate project synthesis';
+
+  ['projCurateAchieved','projCuratePatterns','projCurateNext'].forEach(id => {
+    $('#' + id).oninput = () => {
+      if (!state.projectAssessments[p.id]) state.projectAssessments[p.id] = { status: 'pending' };
+      state.projectAssessments[p.id].achieved = $('#projCurateAchieved').value;
+      state.projectAssessments[p.id].patterns = $('#projCuratePatterns').value;
+      state.projectAssessments[p.id].next = $('#projCurateNext').value;
+      if (state.projectAssessments[p.id].status === 'ready') state.projectAssessments[p.id].status = 'curated';
+      save();
+      $('#releaseProjBtn').disabled = false;
+    };
+  });
+}
+
+async function generateProjectAssessment() {
+  if (!state.apiKey) { toast('Add your Anthropic API key in Setup first.', 'err'); return; }
+  const p = state.projects.find(x => x.id === instCurrentProjAssessId);
+  const fb = state.feedback.filter(f => f.projectId === p.id);
+  if (fb.length === 0) { toast('No audience feedback for this project yet.', 'warn'); return; }
+
+  $('#genProjAssessBtn').disabled = true;
+  $('#genProjBtnLabel').innerHTML = '<span class="spinner"></span> Generating...';
+
+  try {
+    const obs = state.instructorObs.projects[p.id] || '';
+    const prompt = buildProjectPrompt(p, fb, obs);
+    const docs = collectDocsForPrompt(p);
+    const response = await callClaude(prompt, docs);
+    const sections = parseProjectResponse(response);
+
+    state.projectAssessments[p.id] = {
+      ...state.projectAssessments[p.id],
+      aiModel: 'claude-opus-4-7',
+      aiRawResponse: response,
+      aiDraft: { ...sections },
+      ...sections,
+      ingredientsSnapshot: {
+        audienceCount: fb.length,
+        teamsWithData: new Set(fb.map(f => f.teamId)).size,
+        rubricPresent: !!(p.rubricText || p.rubricFile),
+        kbDocCount: state.course.knowledgeBase.length,
+        instructorObsPresent: obs.trim().length > 0
+      },
+      status: 'ready',
+      generatedAt: Date.now()
+    };
+    save();
+    renderProjectAssessmentView();
+    toast('Project synthesis generated — curate before release.');
+  } catch (err) {
+    toast('Error: ' + err.message, 'err');
+  } finally {
+    $('#genProjAssessBtn').disabled = false;
+  }
+}
+
+function buildProjectPrompt(project, feedback, observations) {
+  const total = feedback.length;
+  const avg = total ? (feedback.reduce((s, f) => s + f.depth, 0) / total).toFixed(2) : '—';
+  const impact = feedback.reduce((s, f) => s + f.depth * f.depth, 0);
+  const byTeam = state.teams.map(t => {
+    const tfb = feedback.filter(f => f.teamId === t.id);
+    return `  · ${t.name}: ${tfb.length} responses, avg depth ${tfb.length ? (tfb.reduce((s,f)=>s+f.depth,0)/tfb.length).toFixed(2) : '—'}`;
+  }).join('\n');
+  const byEmo = { pos: feedback.filter(f => f.emotion === 'positive').length,
+                  neu: feedback.filter(f => f.emotion === 'neutral').length,
+                  cha: feedback.filter(f => f.emotion === 'challenging').length };
+
+  return `You are assisting an instructor in synthesising a project-level reflection across all teams.
+Grounded in: Hattie & Timperley (feedback model), Black & Wiliam (formative assessment), Engeström (expansive learning), Panadero (self-regulated learning).
+
+===== COURSE =====
+${state.course.code} · ${state.course.title}
+Description: ${state.course.description || '(not provided)'}
+Learning objectives:
+${state.course.learningObjectives || '(not provided)'}
+
+===== PROJECT =====
+Name: ${project.name} · Theme: ${project.theme}
+Description: ${project.description || '(not provided)'}
+Objectives:
+${project.objectives || '(not provided)'}
+Rubric: ${project.rubricText || '(see attached)'}
+
+===== AUDIENCE DATA (aggregated across all teams) =====
+Total responses: ${total}
+Average depth: ${avg}
+Impact score: ${impact}
+Per team:
+${byTeam}
+Emotion mix: positive ${byEmo.pos} · neutral ${byEmo.neu} · challenging ${byEmo.cha}
+
+===== INSTRUCTOR OBSERVATIONS ON THIS PROJECT =====
+${observations && observations.trim().length > 0 ? observations : '(No written observations yet.)'}
+
+===== TASK =====
+Produce a project-level synthesis for the cohort with three sections, 80–140 words each, addressed to all students (second person plural):
+
+## ACHIEVED
+What this project achieved pedagogically — the learning it surfaced, the conceptual moves the cohort made, the evidence in the audience data.
+
+## PATTERNS
+Patterns observed across teams — common strengths, common gaps, notable divergences. Do not name or rank teams.
+
+## NEXT
+How this project connects to what comes next in the course. If it is the final project, frame it as closure and transfer.
+
+Output only the three sections with headings. No preamble.`;
+}
+
+function parseProjectResponse(text) {
+  const out = { achieved: '', patterns: '', next: '' };
+  const m1 = text.match(/##\s*ACHIEVED\s*([\s\S]*?)(?=##\s*PATTERNS|##\s*NEXT|$)/i);
+  const m2 = text.match(/##\s*PATTERNS\s*([\s\S]*?)(?=##\s*NEXT|$)/i);
+  const m3 = text.match(/##\s*NEXT\s*([\s\S]*?)$/i);
+  if (m1) out.achieved = m1[1].trim();
+  if (m2) out.patterns = m2[1].trim();
+  if (m3) out.next = m3[1].trim();
+  if (!out.achieved && !out.patterns && !out.next) out.achieved = text.trim();
+  return out;
+}
+
+function releaseProjectAssessment() {
+  const p = state.projects.find(x => x.id === instCurrentProjAssessId);
+  if (!p || !state.projectAssessments[p.id]) return;
+  state.projectAssessments[p.id].status = 'released';
+  state.projectAssessments[p.id].releasedAt = Date.now();
+  save();
+  renderProjectAssessmentView();
+  toast('Project synthesis released to the cohort.');
+}
+
+// ============================================================
+// COURSE-LEVEL ASSESSMENT
+// ============================================================
+function renderCourseAssessmentView() {
+  const fb = state.feedback;
+  const total = fb.length;
+  const avg = total ? (fb.reduce((s, f) => s + f.depth, 0) / total).toFixed(2) : '—';
+  const impact = fb.reduce((s, f) => s + f.depth * f.depth, 0);
+
+  $('#courseMetrics').innerHTML = `
+    <div class="viz-stat"><div class="viz-stat-label">Projects</div><div class="viz-stat-val">${state.projects.length}</div></div>
+    <div class="viz-stat"><div class="viz-stat-label">Teams</div><div class="viz-stat-val">${state.teams.length}</div></div>
+    <div class="viz-stat"><div class="viz-stat-label">Total responses</div><div class="viz-stat-val">${total}</div></div>
+    <div class="viz-stat"><div class="viz-stat-label">Avg. depth</div><div class="viz-stat-val">${avg}</div></div>
+  `;
+
+  // per-project mini-summary
+  const rows = state.projects.map(p => {
+    const pfb = fb.filter(f => f.projectId === p.id);
+    const a = pfb.length ? (pfb.reduce((s,f)=>s+f.depth,0)/pfb.length).toFixed(2) : '—';
+    const i = pfb.reduce((s,f)=>s+f.depth*f.depth,0);
+    return `<div class="evidence-row"><span class="evid-label">${esc(p.name)}</span><span class="evid-val">${pfb.length} responses · depth ${a} · impact ${i}</span></div>`;
+  }).join('');
+  $('#courseEvidencePanel').innerHTML = `<h4>Progression across projects</h4>${rows || '<div style="color:var(--ink-mute); font-size:0.85rem; padding:0.5rem 0;">No projects configured.</div>'}`;
+
+  $('#instrObsCourse').value = state.instructorObs.course || '';
+  $('#instrObsCourse').oninput = e => {
+    state.instructorObs.course = e.target.value;
+    save();
+  };
+
+  const a = state.courseAssessment;
+  $('#courseCurationArea').classList.toggle('hidden', !a);
+  if (a) {
+    $('#courseCurateArc').value = a.arc || '';
+    $('#courseCurateProgression').value = a.progression || '';
+    $('#courseCurateAhead').value = a.ahead || '';
+  }
+  $('#releaseCourseBtn').disabled = !a;
+  $('#genCourseBtnLabel').textContent = a ? '✦ Regenerate course synthesis' : '✦ Generate course synthesis';
+
+  ['courseCurateArc','courseCurateProgression','courseCurateAhead'].forEach(id => {
+    $('#' + id).oninput = () => {
+      if (!state.courseAssessment) state.courseAssessment = { status: 'pending' };
+      state.courseAssessment.arc = $('#courseCurateArc').value;
+      state.courseAssessment.progression = $('#courseCurateProgression').value;
+      state.courseAssessment.ahead = $('#courseCurateAhead').value;
+      if (state.courseAssessment.status === 'ready') state.courseAssessment.status = 'curated';
+      save();
+      $('#releaseCourseBtn').disabled = false;
+    };
+  });
+}
+
+async function generateCourseAssessment() {
+  if (!state.apiKey) { toast('Add your Anthropic API key in Setup first.', 'err'); return; }
+  if (state.feedback.length === 0) { toast('No feedback in the course yet.', 'warn'); return; }
+
+  $('#genCourseAssessBtn').disabled = true;
+  $('#genCourseBtnLabel').innerHTML = '<span class="spinner"></span> Generating...';
+
+  try {
+    const obs = state.instructorObs.course || '';
+    const prompt = buildCoursePrompt(obs);
+    // collect all KB docs as grounding material
+    const docs = state.course.knowledgeBase
+      .filter(k => !k.isText && k.type === 'application/pdf')
+      .map(k => ({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: k.content } }));
+    const response = await callClaude(prompt, docs);
+    const sections = parseCourseResponse(response);
+
+    state.courseAssessment = {
+      ...state.courseAssessment,
+      aiModel: 'claude-opus-4-7',
+      aiRawResponse: response,
+      aiDraft: { ...sections },
+      ...sections,
+      ingredientsSnapshot: {
+        projectCount: state.projects.length,
+        teamCount: state.teams.length,
+        totalResponses: state.feedback.length,
+        kbDocCount: state.course.knowledgeBase.length,
+        instructorObsPresent: obs.trim().length > 0
+      },
+      status: 'ready',
+      generatedAt: Date.now()
+    };
+    save();
+    renderCourseAssessmentView();
+    toast('Course synthesis generated — curate before release.');
+  } catch (err) {
+    toast('Error: ' + err.message, 'err');
+  } finally {
+    $('#genCourseAssessBtn').disabled = false;
+  }
+}
+
+function buildCoursePrompt(observations) {
+  const fb = state.feedback;
+  const total = fb.length;
+  const avg = total ? (fb.reduce((s, f) => s + f.depth, 0) / total).toFixed(2) : '—';
+  const impact = fb.reduce((s, f) => s + f.depth * f.depth, 0);
+
+  const perProject = state.projects.map(p => {
+    const pfb = fb.filter(f => f.projectId === p.id);
+    const pAvg = pfb.length ? (pfb.reduce((s,f)=>s+f.depth,0)/pfb.length).toFixed(2) : '—';
+    const pImp = pfb.reduce((s,f)=>s+f.depth*f.depth,0);
+    const pos = pfb.filter(f => f.emotion === 'positive').length;
+    const neu = pfb.filter(f => f.emotion === 'neutral').length;
+    const cha = pfb.filter(f => f.emotion === 'challenging').length;
+    const highDepth = pfb.filter(f => f.depth >= 4).length;
+    const highDepthPct = pfb.length ? Math.round(100 * highDepth / pfb.length) : 0;
+    return `  · ${p.name} (${p.theme}): ${pfb.length} responses, avg depth ${pAvg}, impact ${pImp}, ${highDepthPct}% strong/transformative (${pos}+${neu}~${cha}-)`;
+  }).join('\n');
+
+  return `You are assisting an instructor in writing a whole-course synthesis — a longitudinal narrative of the term.
+Grounded in: Hattie & Timperley, Black & Wiliam, Engeström, Panadero.
+
+===== COURSE =====
+${state.course.code} · ${state.course.title} (${state.course.term} ${state.course.year})
+Description: ${state.course.description || '(not provided)'}
+Learning objectives:
+${state.course.learningObjectives || '(not provided)'}
+
+===== PROGRESSION EVIDENCE =====
+Projects (in order):
+${perProject}
+
+Aggregate: ${total} total responses across ${state.projects.length} projects and ${state.teams.length} teams. Overall average depth ${avg}, total impact score ${impact}.
+
+===== INSTRUCTOR REFLECTIONS ON THE COURSE =====
+${observations && observations.trim().length > 0 ? observations : '(No written reflections yet.)'}
+
+===== TASK =====
+Produce a course-level narrative with three sections, 100–160 words each, addressed to the cohort (second person plural):
+
+## ARC
+The arc of the term — what the course tried to cultivate and how the cohort moved through it. If there is evidence of maturation (e.g. rising depth scores across projects), name it.
+
+## PROGRESSION
+Specific evidence of progression in the audience data, tied back to the course's learning objectives. Where did the cohort grow most?
+
+## AHEAD
+What this course prepares you for — in the curriculum, the discipline, and practice. End with a closing thought or question.
+
+Output only the three sections with headings. No preamble.`;
+}
+
+function parseCourseResponse(text) {
+  const out = { arc: '', progression: '', ahead: '' };
+  const m1 = text.match(/##\s*ARC\s*([\s\S]*?)(?=##\s*PROGRESSION|##\s*AHEAD|$)/i);
+  const m2 = text.match(/##\s*PROGRESSION\s*([\s\S]*?)(?=##\s*AHEAD|$)/i);
+  const m3 = text.match(/##\s*AHEAD\s*([\s\S]*?)$/i);
+  if (m1) out.arc = m1[1].trim();
+  if (m2) out.progression = m2[1].trim();
+  if (m3) out.ahead = m3[1].trim();
+  if (!out.arc && !out.progression && !out.ahead) out.arc = text.trim();
+  return out;
+}
+
+function releaseCourseAssessment() {
+  if (!state.courseAssessment) return;
+  state.courseAssessment.status = 'released';
+  state.courseAssessment.releasedAt = Date.now();
+  save();
+  renderCourseAssessmentView();
+  toast('Course synthesis released to the cohort.');
+}
+
+// ============================================================
+// EDIT-PERCENTAGE CALCULATOR — for provenance transparency
+// ============================================================
+function percentEdited(original, edited) {
+  if (!original || !edited) return 0;
+  const normalize = s => s.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(Boolean);
+  const o = normalize(original);
+  const e = normalize(edited);
+  if (o.length === 0) return edited.trim().length > 0 ? 100 : 0;
+  // Jaccard-based edit distance approximation (word-level)
+  const oSet = new Set(o);
+  const eSet = new Set(e);
+  let common = 0;
+  eSet.forEach(w => { if (oSet.has(w)) common++; });
+  const union = new Set([...oSet, ...eSet]).size;
+  const sim = union === 0 ? 1 : common / union;
+  return Math.max(0, Math.min(100, Math.round((1 - sim) * 100)));
+}
+
+function assessmentEditPercent(a) {
+  if (!a || !a.aiDraft) return 0;
+  const parts = [
+    percentEdited(a.aiDraft.feedUp, a.feedUp),
+    percentEdited(a.aiDraft.feedBack, a.feedBack),
+    percentEdited(a.aiDraft.feedForward, a.feedForward)
+  ];
+  return Math.round(parts.reduce((s, x) => s + x, 0) / parts.length);
+}
+
+function formatDateTime(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' +
+         d.toLocaleTimeString('en-CA', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+
+// ============================================================
 // STUDENT VIEW
 // ============================================================
 function renderStudent() {
@@ -2743,7 +3708,7 @@ function drawStudent() {
     feedHtml = `
       <div class="feed-section" style="background:var(--paper-warm); border-style:dashed;">
         <div class="feed-marker"><span class="feed-num">⧖</span><h3>Curated feedback <em>not yet released</em></h3></div>
-        <p style="color:var(--ink-mute);">Your instructor is reviewing and curating the AI-assisted assessment before releasing it. Check back soon.</p>
+        <p style="color:var(--ink-mute);">Your instructor is reviewing and curating the AI-assisted draft before releasing it. Check back soon.</p>
       </div>`;
   } else {
     feedHtml = `
@@ -2767,6 +3732,9 @@ function drawStudent() {
       </div>` : ''}`;
   }
 
+  // Provenance panel — only shown when feedback is released
+  const provenanceHtml = released ? renderProvenancePanel(a, p, t) : '';
+
   const saText = state.selfAssessments[key]?.text || '';
   const selfHtml = `
     <div class="feed-section">
@@ -2778,7 +3746,98 @@ function drawStudent() {
       </div>
     </div>`;
 
-  $('#studentContent').innerHTML = metricsHtml + feedHtml + selfHtml;
+  $('#studentContent').innerHTML = metricsHtml + feedHtml + provenanceHtml + selfHtml;
+}
+
+// ============================================================
+// PROVENANCE PANEL — transparency for students
+// ============================================================
+function renderProvenancePanel(a, project, team) {
+  const snap = a.ingredientsSnapshot || {};
+  const editPct = assessmentEditPercent(a);
+  const aiPct = Math.max(0, 100 - editPct);
+  const humanPct = editPct;
+
+  const instructor = state.course.code ? `your instructor for ${esc(state.course.code)}` : 'your instructor';
+
+  const ingredients = [
+    { label: 'Anonymous audience responses', present: snap.audienceCount > 0, count: snap.audienceCount || 0, unit: 'responses' },
+    { label: 'Project rubric', present: snap.rubricPresent, count: snap.rubricPresent ? 1 : 0, unit: snap.rubricFileUsed ? 'file' : 'text' },
+    { label: 'Project objectives', present: snap.projectObjectivesPresent, count: snap.projectObjectivesPresent ? 1 : 0, unit: 'document' },
+    { label: 'Course learning objectives', present: snap.courseObjectivesPresent, count: snap.courseObjectivesPresent ? 1 : 0, unit: 'document' },
+    { label: 'Course knowledge base', present: (snap.kbDocCount || 0) > 0, count: snap.kbDocCount || 0, unit: 'documents' },
+    { label: 'Instructor observations of your team', present: snap.instructorObsPresent, count: snap.instructorObsPresent ? 1 : 0, unit: 'notes' }
+  ];
+
+  return `
+    <div class="provenance">
+      <div class="provenance-head">
+        <svg class="provenance-mark" viewBox="0 0 32 32">
+          <circle class="pv-1" cx="16" cy="16" r="13"/>
+          <circle class="pv-2" cx="16" cy="16" r="9"/>
+          <circle class="pv-3" cx="16" cy="16" r="5"/>
+          <circle class="pv-c" cx="16" cy="16" r="2"/>
+        </svg>
+        <h3>How this feedback <em>was made</em></h3>
+      </div>
+      <p class="provenance-lead">
+        This feedback is the result of <strong>human–AI collaboration</strong>, designed in line with Carleton's AI Framework (March 2026), which requires human agency, transparency, and a human-in-the-loop in any AI-assisted assessment. Below is a full account of what went in, how it was made, and who was responsible at each step.
+      </p>
+
+      <div class="prov-section">
+        <div class="prov-section-title"><span class="pst-dot" style="background:var(--sage);"></span>Ingredients · what grounded the draft</div>
+        <div class="ingredient-list">
+          ${ingredients.map(ing => `
+            <div class="ingredient ${ing.present ? 'present' : 'absent'}">
+              <span class="ing-mark"></span>
+              <span>${ing.label}</span>
+              <span class="ing-count">${ing.present ? ing.count + ' ' + ing.unit : '— not used'}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="prov-section">
+        <div class="prov-section-title"><span class="pst-dot" style="background:var(--purple);"></span>Process · how the feedback evolved</div>
+        <div class="prov-timeline">
+          <div class="prov-step ai">
+            <div class="prov-step-title">AI draft generated by Claude (${esc(a.aiModel || 'claude-opus-4-7')})</div>
+            <div class="prov-step-meta">${formatDateTime(a.generatedAt)} · drafted using only the ingredients listed above. No student names or personal identifiers were sent.</div>
+          </div>
+          <div class="prov-step human">
+            <div class="prov-step-title">Reviewed and curated by ${instructor}</div>
+            <div class="prov-step-meta">Your instructor edited approximately ${editPct}% of the AI draft before releasing it. Any grade was assigned solely by the instructor.</div>
+          </div>
+          <div class="prov-step done">
+            <div class="prov-step-title">Released to you</div>
+            <div class="prov-step-meta">${formatDateTime(a.releasedAt)}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prov-section">
+        <div class="prov-section-title"><span class="pst-dot" style="background:var(--pink);"></span>Balance · AI draft vs instructor curation</div>
+        <div class="balance-visual">
+          <div class="balance-label-row">
+            <span class="b-ai">AI-drafted · ${aiPct}%</span>
+            <span class="b-human">Instructor-edited · ${humanPct}%</span>
+          </div>
+          <div class="balance-track">
+            <div class="balance-ai" style="width:${aiPct}%"></div>
+            <div class="balance-human" style="width:${humanPct}%"></div>
+          </div>
+          <div class="balance-sub">
+            This estimate compares the AI's original draft to the final text word-by-word. ${humanPct < 15 ? 'Your instructor largely kept the AI wording, judging it accurate.' : humanPct < 40 ? 'Your instructor refined the AI draft meaningfully before release.' : 'Your instructor substantially rewrote the AI draft before release.'} Regardless of balance, your instructor took responsibility for what you see.
+          </div>
+        </div>
+      </div>
+
+      <div class="prov-section" style="margin-bottom:0;">
+        <div class="prov-section-title"><span class="pst-dot" style="background:var(--ink);"></span>AI disclosure statement</div>
+        <div class="disclosure-box">
+          <strong>Per Carleton's AI Framework:</strong> this assessment was drafted by an AI assistant (${esc(a.aiModel || 'Claude, claude-opus-4-7')}) using only anonymised aggregate audience data, your project's rubric and objectives, the course's learning outcomes, and your instructor's direct observations. Your instructor reviewed, edited, and takes full responsibility for the feedback. Any grade assigned here was determined by the instructor, not the AI — consistent with the Framework's principle that <em>evaluation must be made by humans and cannot rely solely on AI</em>. You may discuss this feedback, contest its interpretation, or request additional detail at any time.
+        </div>
+      </div>
+    </div>`;
 }
 
 function saveSelfAssessment(key) {
